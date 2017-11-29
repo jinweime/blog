@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>音视频开发的一些基础概念 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="音视频开发过程中经常遇到一些晦涩的词语，想玩流媒体这块搞懂这些专业术语和概念还是很有必要的  分辨率一般我们会说手机或者电脑的分辨率是(720x576, 1280x720, 1920x1080 …)像素，这里的数字其实是屏幕能显示多少像素点。由于屏幕上的点、线和面都是由像素组成的，可显示的像素越多，画面就越精细，同样的">
+<meta name="keywords" content="room">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频开发的一些基础概念">
+<meta property="og:url" content="http://yoursite.com/2017/09/10/音视频开发的一些基础概念/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="音视频开发过程中经常遇到一些晦涩的词语，想玩流媒体这块搞懂这些专业术语和概念还是很有必要的  分辨率一般我们会说手机或者电脑的分辨率是(720x576, 1280x720, 1920x1080 …)像素，这里的数字其实是屏幕能显示多少像素点。由于屏幕上的点、线和面都是由像素组成的，可显示的像素越多，画面就越精细，同样的屏幕区域内能显示的信息也越多分辨率也就越高 ###码率(码流)每秒视频数据的比">
+<meta property="og:updated_time" content="2017-09-15T10:56:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音视频开发的一些基础概念">
+<meta name="twitter:description" content="音视频开发过程中经常遇到一些晦涩的词语，想玩流媒体这块搞懂这些专业术语和概念还是很有必要的  分辨率一般我们会说手机或者电脑的分辨率是(720x576, 1280x720, 1920x1080 …)像素，这里的数字其实是屏幕能显示多少像素点。由于屏幕上的点、线和面都是由像素组成的，可显示的像素越多，画面就越精细，同样的屏幕区域内能显示的信息也越多分辨率也就越高 ###码率(码流)每秒视频数据的比">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-音视频开发的一些基础概念" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      音视频开发的一些基础概念
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>音视频开发过程中经常遇到一些晦涩的词语，想玩流媒体这块搞懂这些专业术语和概念还是很有必要的</p>
+</blockquote>
+<h3 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h3><p>一般我们会说手机或者电脑的分辨率是(720x576, 1280x720, 1920x1080 …)像素，这里的数字其实是屏幕能显示多少像素点。由于屏幕上的点、线和面都是由像素组成的，可显示的像素越多，画面就越精细，同样的屏幕区域内能显示的信息也越多分辨率也就越高</p>
+<p>###码率(码流)<br>每秒视频数据的比特位数(bit字节)，文件大小(b) = 码率(b/s) * 时长(s)。指在压缩视频的时候给这个视频指定一个参数，用以告诉压缩软件期望的压缩后视频的大小。码率的英文名为bps(bit per second)，就是用平均每秒多少bit来衡量一个视频大小。</p>
+<h3 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h3><blockquote>
+<p>百科解释</p>
+</blockquote>
+<p>每秒帧率(Frames per second rate) FPS。每秒钟显示的图像数量，由于人类眼睛的特殊生理结构，如果所看画面之帧率高于24的时候，就会认为是连贯的，此现象称之为视觉暂留。这也就是为什么电影胶片是一格一格拍摄出来，然后快速播放的。</p>
+<p>而对游戏，一般来说，第一人称射击游戏比较注重FPS的高低，如果FPS&lt;30的话，游戏会显得不连贯。所以有一句有趣的话：“FPS（指FPS游戏）重在FPS（指帧率）。</p>
+<p>每秒的帧数(fps)或者说帧率表示图形处理器处理场时每秒钟能够更新的次数。高的帧率可以得到更流畅、更逼真的动画。一般来说30fps就是可以接受的，但是将性能提升至60fps则可以明显提升交互感和逼真感，但是一般来说超过75fps一般就不容易察觉到有明显的流畅度提升了。如果帧率超过屏幕刷新率只会浪费图形处理的能力，因为监视器不能以这么快的速度更新，这样超过刷新率的帧率就浪费掉了。</p>
+<h3 id="比特率"><a href="#比特率" class="headerlink" title="比特率"></a>比特率</h3><p>比特率是指每秒传送的比特(bit)数。单位为bps(Bit Per Second)，比特率越高，传送的数据越大。</p>
+<h3 id="采样率"><a href="#采样率" class="headerlink" title="采样率"></a>采样率</h3><p>采样率（也称为采样速度或者采样频率）定义了每秒从连续信号中提取并组成离散信号的采样个数，它用赫兹（Hz）来表示。采样率是指将模拟信号转换成数字信号时的采样频率，也就是单位时间内采样多少点。一个采样点数据有多少个比特。比特率是指每秒传送的比特(bit)数。单位为 bps(Bit Per Second)，比特率越高，传送的数据越大，音质越好.比特率 =采样率 x 采用位数 x声道数.</p>
+<h3 id="码率，分辨率，帧率"><a href="#码率，分辨率，帧率" class="headerlink" title="码率，分辨率，帧率"></a>码率，分辨率，帧率</h3><p>RTSP RTMP HTTP都是在应用应用层,理论上RTSP RTMPHTTP都可以做直播和点播，但一般做直播用RTSP RTMP，做点播用HTTP。做视频会议的时候原来用SIP协议，现在基本上被RTMP协议取代了。</p>
+<p><strong>区别</strong></p>
+<p>HTTP: 即超文本传送协议(ftp即文件传输协议),实时流传输协议TTP全称Routing Table Maintenance Protocol（路由选择表维护协议）。HTTP将所有的数据作为文件做处理。http协议不是流媒体协议。</p>
+<p><strong>RTMP和RTSP协议是流媒体协议。</strong></p>
+<p>RTMP协议是Adobe的私有协议,未完全公开，RTSP协议和HTTP协议是共有协议，并有专门机构做维护。RTMP协议一般传输的是flv，f4v格式流，RTSP协议一般传输的是ts,mp4格式的流。HTTP没有特定的流。</p>
+<p>RTSP传输一般需要2-3个通道，命令和数据通道分离，HTTP和RTMP一般在TCP一个通道上传输命令和数据。</p>
+<h3 id="软解和硬解"><a href="#软解和硬解" class="headerlink" title="软解和硬解"></a>软解和硬解</h3><p>硬解就是硬件解码，指利用GPU来部分代替CPU进行解码，软解就是软件解码，指利用软件让CPU来进行解码。</p>
+<p><strong>硬解码：</strong><br>是将原来全部交由CPU来处理的视频数据的一部分交由GPU来做，而GPU的并行运算能力要远远高于CPU，这样可以大大的降低对CPU的负载，CPU的占用率较低了之后就可以同时运行一些其他的程序了，当然，对于较好的处理器来说，比如i5 2320，或者AMD 任何一款四核心处理器来说，硬解和软件的区别只是个人偏好问题了吧。　　</p>
+<p><strong>软解码：</strong>即通过软件让CPU来对视频进行解码处理；而硬解码：指不借助于CPU，而通过专用的子卡设备来独立完成视频解码任务。曾经的VCD/DVD解压卡、视频压缩卡等都隶属于硬解码这个范畴。而现如今，要完成高清解码已经不再需要额外的子卡，因为硬解码的模块已经被整合到显卡GPU的内部，所以目前的主流显卡（集显）都能够支持硬解码技术。</p>
+<h3 id="常见的直播协议有哪些区别"><a href="#常见的直播协议有哪些区别" class="headerlink" title="常见的直播协议有哪些区别"></a>常见的直播协议有哪些区别</h3><p>常见的直播协议有三种 RTMP、HLS、FLV…</p>
+<p>1、RTMP：real time messaging protocol~实时传输协议，RTMP协议比较全能，既可以用来推送又可以用来直播，其核心理念是将大块的视频帧和音频帧“剁碎”，然后以小数据包的形式在互联网上进行传输，而且支持加密，因此隐私性相对比较理想，但拆包组包的过程比较复杂，所以在海量并发时也容易出现一些不可预期的稳定性问题。</p>
+<p>2、FLV：FLV协议由Adobe公司主推，格式极其简单，只是在大块的视频帧和音视频头部加入一些标记头信息，由于这种极致的简洁，在延迟表现和大规模并发方面都很成熟。唯一的不足就是在手机浏览器上的支持非常有限，但是用作手机端APP直播协议却异常合适。</p>
+<p>3、HLS：苹果原生：HTTP Live Streaming，遵循的是 HTTP 超文本传输协议，端口号8080，将视频分成5-10秒的视频小分片，然后用m3u8索引表进行管理，由于客户端下载到的视频都是5-10秒的完整数据，故视频的流畅性很好，但也同样引入了很大的延迟（HLS的一般延迟在10-30s左右）。</p>
+<h3 id="FFmpeg是什么"><a href="#FFmpeg是什么" class="headerlink" title="FFmpeg是什么"></a>FFmpeg是什么</h3><p>FFmpeg是一套用来记录和转换数字音视频，并能将其转化为流的开源计算机程序。拉流和推流离不开 FFmpeg </p>
+<h3 id="SurfaceTexture"><a href="#SurfaceTexture" class="headerlink" title="SurfaceTexture"></a>SurfaceTexture</h3><p>SurfaceTexture是从Android3.0（API 11）加入的一个新类。这个类跟SurfaceView很像，可以从camera preview或者video decode里面获取图像流（image stream）。</p>
+<p>但是，和SurfaceView不同的是，SurfaceTexture在接收图像流之后，不需要显示出来。有做过Android camera开发的人都知道，比较头疼的一个问题就是，从camera读取到的预览（preview）图像流一定要输出到一个可见的（Visible）SurfaceView上，然后通过Camera.PreviewCallback的public void onPreviewFrame(byte[] data, Camera camera)函数来获得图像帧数据的拷贝。</p>
+<p>这就存在一个问题，比如我希望隐藏摄像头的预览图像或者对每一帧进行一些处理再显示到手机显示屏上，那么在Android3.0之前是没有办法做到的，或者说你需要用一些小技巧，比如用其他控件把SurfaceView给挡住，注意这个显示原始camera图像流的SurfaceView其实是依然存在的，也就是说被挡住的SurfaceView依然在接收从camera传过来的图像，而且一直按照一定帧率去刷新，这是消耗cpu的，而且如果一些参数设置的不恰当，后面隐藏的SurfaceView有可能会露出来，因此这些小技巧并不是好办法。但是，有了SurfaceTexture之后，就好办多了，因为SurfaceTexture不需要显示到屏幕上，因此我们可以用SurfaceTexture接收来自camera的图像流，然后从SurfaceTexture中取得图像帧的拷贝进行处理，处理完毕后再送给另一个SurfaceView用于显示即可。</p>
+<h3 id="SurfaceView"><a href="#SurfaceView" class="headerlink" title="SurfaceView"></a>SurfaceView</h3><p>SurfaceView是一个专门用于做频繁绘制的View子类，它的绘制操作是在子线程中执行，所以频繁绘制不会阻塞线程，使用它去做一些需要频繁绘制和长时间绘制效果会高很多。而如果这种操作放入到View中去做的话就不合适了，首先View的刷新UI操作都是需要在UI线程中，也就是我们的主线程中。如果去执行一些需要长时间绘制，就会造成UI阻塞造成无法响应其他时间</p>
+<p><a href="http://www.easydarwin.org/article/Streaming/92.html" target="_blank" rel="noopener">论码流、码率、采样率、比特率、帧速率、分辨率、高清视频的概念</a><br><a href="http://www.jianshu.com/p/028196b8ca14" target="_blank" rel="noopener">码率，分辨率，帧率</a><br><a href="http://blog.csdn.net/king1425/article/details/70238995" target="_blank" rel="noopener">音视频开发术语介绍</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/09/10/音视频开发的一些基础概念/" class="article-date">
+  <time datetime="2017-09-10T03:01:22.000Z" itemprop="datePublished">2017-09-10</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/room/">room</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/10/20/教父这部电影/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          教父
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/06/利用adb刷原生android系统/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">利用adb刷原生android系统</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
