@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>单例模式花样玩法 | JINWEI BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。  何为单例在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 app">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式花样玩法">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/单例模式花样玩法/index.html">
+<meta property="og:site_name" content="JINWEI BLOG">
+<meta property="og:description" content="单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。  何为单例在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 application，这是一个全局的只要程序还存在进程，任何地方都可以使用到它，而">
+<meta property="og:updated_time" content="2018-01-28T02:11:19.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单例模式花样玩法">
+<meta name="twitter:description" content="单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。  何为单例在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 application，这是一个全局的只要程序还存在进程，任何地方都可以使用到它，而">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-单例模式花样玩法" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单例模式花样玩法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。</p>
+</blockquote>
+<h3 id="何为单例"><a href="#何为单例" class="headerlink" title="何为单例"></a>何为单例</h3><p>在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 application，这是一个全局的只要程序还存在进程，任何地方都可以使用到它，而且一个程序只会有一个application，程序在启动的时候就初始化了一个这样的单例实例。</p>
+<ol>
+<li>懒加载单例模式</li>
+</ol>
+<p>懒加载就是说类加载器加载class的时候这个实例还没有被初始化，需要通过一些具体的调用方式它才会触发GC创建实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton singleton;</span><br><span class="line"></span><br><span class="line">    public static Singleton getSingleton() &#123;</span><br><span class="line">        if (singleton == null) &#123;</span><br><span class="line">            singleton = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如这个方法就是一个典型的懒加载，类加载器在加载类的时候只是在栈内存中初始化了一个 singleton的 static变量没有在堆内存中分配实例。分配实例需要调用getSignleton方法才会去走分配内存的逻辑。</p>
+<p>这段代码是线程不安全的，多并发访问下会出多个实例，这种情况一旦发生那么单例的就没有作用了，这时候我们需要根据实际情况来对代码进行优化。</p>
+<p><strong>解决办法加Look</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton singleton;</span><br><span class="line"></span><br><span class="line">    public synchronized static Singleton getSingleton() &#123;</span><br><span class="line">        if (singleton == null) &#123;</span><br><span class="line">            singleton = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过同步锁的可以解决并发情况创建多个实例的问题，但是这样的话效率到大大降低了，因为如果并发下获取这个实例 线程之间就必须得等前面的线程释放Look之后才能进行访问，在一些业务要求比较高的场景下这种情况可能会降低一些访问速度，这个时候就可以考虑双重锁了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton singleton;</span><br><span class="line"></span><br><span class="line">    public static Singleton getSingleton() &#123;</span><br><span class="line">        if (singleton == null) &#123;</span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                if (singleton == null) &#123;</span><br><span class="line">                    singleton = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码进行了二次  ==null判断，我一脸疑问。思考了下也是有原因的，首先第一个判断是线程不安全的，如果这个时候有并发的问题，那么第二个判断就起来的安全的作用，这会只能有一个人线程进入到实例对象的逻辑。实例完后内存中就只会存在一个实例了，接下来的线程访问不管线程安不安全它们都是获取的同一个实例，这就解决了之前的Look后效率不高的问题。</p>
+<p>但是这段代码可能还会涉及到一个指令重排的问题，有可能执行到sigonleton=new Singleton（）就变其他线程抢占直接执行 return singleton了，这个时候就很自然的 null了。</p>
+<p><strong>声明volatile</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    //声明成 volatile</span><br><span class="line">    private volatile static Singleton instance;     private Singleton ()&#123;&#125;</span><br><span class="line">    public static Singleton getSingleton() &#123;</span><br><span class="line">        if (instance == null) &#123;                         </span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                if (instance == null) &#123;       </span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这有一段晦涩的解释</p>
+</blockquote>
+<p>有些人认为使用 volatile 的原因是可见性，也就是可以保证线程在本地不会存有 instance 的副本，每次都是去主内存中读取。但其实是不对的。使用 volatile 的主要原因是其另一个特性：禁止指令重排序优化。也就是说，在 volatile 变量的赋值操作后面会有一个内存屏障（生成的汇编代码上），读操作不会被重排序到内存屏障之前。比如上面的例子，取操作必须在执行完 1-2-3 之后或者 1-3-2 之后，不存在执行到 1-3 然后取到值的情况。从「先行发生原则」的角度理解的话，就是对于一个 volatile 变量的写操作都先行发生于后面对这个变量的读操作（这里的“后面”是时间上的先后顺序）。</p>
+<p>但是特别注意在 Java 5 以前的版本使用了 volatile 的双检锁还是有问题的。其原因是 Java 5 以前的 JMM （Java 内存模型）是存在缺陷的，即时将变量声明成 volatile 也不能完全避免重排序，主要是 volatile 变量前后的代码仍然存在重排序问题。这个 volatile 屏蔽重排序的问题在 Java 5 中才得以修复，所以在这之后才可以放心使用 volatile。</p>
+<blockquote>
+<p>其实以上说的那种写法一般情况可以不必使用，太麻烦而且没必，但是我们需要懂写出它引发出的一些问题，更好的办法是使用饿汉模式来进行单例。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static final Singleton singleton = new Singleton();</span><br><span class="line"></span><br><span class="line">    public static Singleton getSingleton() &#123;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们直接在类加载的时候就实例化了对象，所以也有不存在什么线程安不安全的问题了，但是这种方式也有不好地方就是，如果实例化需要传递一些初始化参数进行的话，那么这种方式就有点尴尬了。</p>
+<p><strong>静态内部类 推荐的写法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static class SignletonHolder &#123;</span><br><span class="line">        private static final Singleton SINGLETON = new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getSingleton() &#123;</span><br><span class="line">        return SignletonHolder.SINGLETON;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种写法仍然使用JVM本身机制保证了线程安全问题；由于 SingletonHolder 是私有的，除了 getInstance() 之外没有办法访问它，因此它是懒汉式的；同时读取实例的时候不会进行同步，没有性能缺陷；也不依赖 JDK 版本。</p>
+<p><strong>枚举 Enum</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public enum EasySingleton&#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以通过EasySingleton.INSTANCE来访问实例，这比调用getInstance()方法简单多了。创建枚举默认就是线程安全的，所以不需要担心double checked locking，而且还能防止反序列化导致重新创建新的对象</p>
+<p><strong>最后</strong></p>
+<p>不管以哪种形式实现单例模式，它们的核心原理都是将构造函数私有化，并且通过静态方法获取一个唯一的实例，在这个获取的过程中你必须保证线程安全、反序列化导致重新生成实例对象等问题，该模式简单，但使用率较高。一般情况下直接使用饿汉式就好了，如果明确要求要懒加载（lazy initialization）会倾向于使用静态内部类，如果涉及到反序列化创建对象时会试着使用枚举的方式来实现单例。</p>
+<p><a href="http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/" target="_blank" rel="noopener">如何正确地写出单例模式</a></p>
+<p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/singleton/mr.simple" target="_blank" rel="noopener">Android设计模式源码解析之单例模式</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/01/22/单例模式花样玩法/" class="article-date">
+  <time datetime="2018-01-22T09:15:56.000Z" itemprop="datePublished">2018-01-22</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/01/21/volley源码分析/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">volley源码分析</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
