@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>MongoDB初探 | JINWEI BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在接触pytdon语言，pytdon的语法和灵活性真的是让我眼前一亮，它适用于很多领域，比如可以编写web网页、写execl脚本做一些重复性有个规律的操作、做后端、写爬虫系统、脚本、ai领域、大数据处理等等。难怪叫做胶水语言，目前全世界都在使用和开发pytdon的库。所以Pytdon的各种相关库还是很多的，我们需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB初探">
+<meta property="og:url" content="http://yoursite.com/2018/05/10/MongoDb初探/index.html">
+<meta property="og:site_name" content="JINWEI BLOG">
+<meta property="og:description" content="最近在接触pytdon语言，pytdon的语法和灵活性真的是让我眼前一亮，它适用于很多领域，比如可以编写web网页、写execl脚本做一些重复性有个规律的操作、做后端、写爬虫系统、脚本、ai领域、大数据处理等等。难怪叫做胶水语言，目前全世界都在使用和开发pytdon的库。所以Pytdon的各种相关库还是很多的，我们需要根据自己的需求来学习响应的lib库，据相关机构统计最近二年pytdon的热度可">
+<meta property="og:updated_time" content="2018-05-10T11:00:58.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB初探">
+<meta name="twitter:description" content="最近在接触pytdon语言，pytdon的语法和灵活性真的是让我眼前一亮，它适用于很多领域，比如可以编写web网页、写execl脚本做一些重复性有个规律的操作、做后端、写爬虫系统、脚本、ai领域、大数据处理等等。难怪叫做胶水语言，目前全世界都在使用和开发pytdon的库。所以Pytdon的各种相关库还是很多的，我们需要根据自己的需求来学习响应的lib库，据相关机构统计最近二年pytdon的热度可">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-MongoDb初探" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MongoDB初探
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近在接触pytdon语言，pytdon的语法和灵活性真的是让我眼前一亮，它适用于很多领域，比如可以编写web网页、写execl脚本做一些重复性有个规律的操作、做后端、写爬虫系统、脚本、ai领域、大数据处理等等。难怪叫做胶水语言，目前全世界都在使用和开发pytdon的库。所以Pytdon的各种相关库还是很多的，我们需要根据自己的需求来学习响应的lib库，据相关机构统计最近二年pytdon的热度可以说是蹭蹭的上涨已经排名到前5了，力度和热度可见之大。</p>
+</blockquote>
+<p><strong>MongoDB</strong></p>
+<p><em>以前我们都使用过mysql oracle mybatis等关系型数据库，这类数据库的逻辑性是非常强大的，如今也是占领着大部分的数据库市场份额，给互联网行业做出了无可比拟的贡献，今天学习了MongoDb这个Nosql(非关系型数据库)数据库。</em></p>
+<p><em>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。</em></p>
+<p><strong>1.主要特点</strong></p>
+<ul>
+<li><p>MongoDB 是一个面向文档存储的数据库，操作起来比较简单和容易。</p>
+</li>
+<li><p>你可以在MongoDB记录中设置任何属性的索引 (如：FirstName=”Sameer”,Address=”8 Gandhi Road”)来实现更快的排序。</p>
+</li>
+<li>你可以通过本地或者网络创建数据镜像，这使得MongoDB有更强的扩展性。</li>
+<li>如果负载的增加（需要更多的存储空间和更强的处理能力） ，它可以分布在计算机网络中的其他节点上这就是所谓的分片。</li>
+<li>Mongo支持丰富的查询表达式。查询指令使用JSON形式的标记，可轻易查询文档中内嵌的对象及数组。</li>
+<li>MongoDb 使用update()命令可以实现替换完成的文档（数据）或者一些指定的数据字段 。</li>
+<li>Mongodb中的Map/reduce主要是用来对数据进行批量处理和聚合操作。</li>
+<li>Map和Reduce。Map函数调用emit(key,value)遍历集合中所有的记录，将key与value传给Reduce函数进行处理。</li>
+<li>Map函数和Reduce函数是使用Javascript编写的，并可以通过db.runCommand或mapreduce命令来执行MapReduce操作。</li>
+<li>GridFS是MongoDB中的一个内置功能，可以用于存放大量小文件。</li>
+<li>MongoDB允许在服务端执行脚本，可以用Javascript编写某个函数，直接在服务端执行，也可以把函数的定义存储在服务端，下次直接调用即可。<br>MongoDB支持各种编程语言:RUBY，PYtdON，JAVA，C++，PHP，C#等多种语言。<br>MongoDB安装简单。</li>
+</ul>
+<p><strong>2.基本概念</strong></p>
+<p>下表将帮助我们更容易理解Mongo中的一些概念</p>
+<table><br>    <tr><br>        <th bgcolor="yellow">SQL术语/概念</th><br>        <th bgcolor="#00FF00">MongoDB术语/概念</th><br>        <th bgcolor="yellow">解释/说明</th><br>    </tr><br>    <tr><br>        <td> database </td><br>        <td bgcolor="#00FF00"> database <br>        </td><td>数据库</td><br>    </tr><br>    <tr><br>        <td> table </td><br>        <td bgcolor="#00FF00">table</td><br>        <td>数据库表/集合</td><br>    </tr><br>    <tr><br>        <td> row </td><br>        <td bgcolor="#00FF00"> document </td><br>        <td>数据记录行/文档</td><br>    </tr><br>    <tr><br>        <td> column </td><br>        <td bgcolor="#00FF00"> field </td><br>        <td>数据字段/域</td><br>    </tr><br>    <tr><br>        <td> index </td><br>        <td bgcolor="#00FF00"> index </td><br>        <td>索引</td><br>    </tr><br>    <tr><br>        <td> table joins </td><br>        <td bgcolor="#00FF00"> </td><br>        <td>表连接,MongoDB不支持</td><br>    </tr><br>    <tr><br>        <td> primary key </td><br>        <td bgcolor="#00FF00"> primary key</td><br>        <td>主键,MongoDB自动将_id字段设置为主键</td><br>    </tr><br></table>
+
+<p><strong>3. 安装&amp;使用</strong></p>
+<ul>
+<li>OSX系统下面使用brew进行安装</li>
+</ul>
+<p>brew install mongodb</p>
+<ul>
+<li>常用操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">执行 mongo进入命令行</span><br><span class="line">mongo</span><br><span class="line"></span><br><span class="line">&gt;use DATABASE_NAME</span><br><span class="line">存在DATABASE_NAME是我们的数据库名称，不存在创建否则使用。</span><br><span class="line"></span><br><span class="line">&gt;show dbs  //显示所有数据库</span><br><span class="line">admin   0.000GB</span><br><span class="line">config  0.000GB</span><br><span class="line">jw      0.000GB</span><br><span class="line">local   0.000GB</span><br><span class="line"></span><br><span class="line">&gt;db.dropDatabase()  //删除当前使用的数据库</span><br><span class="line">&#123; &quot;dropped&quot; : &quot;jw&quot;, &quot;ok&quot; : 1 &#125;</span><br><span class="line"></span><br><span class="line">&gt;db.createCollection(&apos;test&apos;) //创建test集合</span><br><span class="line">&#123; &quot;ok&quot; : 1 &#125;</span><br><span class="line"></span><br><span class="line">&gt;show collections  //显示所有的集合列表</span><br><span class="line"></span><br><span class="line">&gt;db.table1.insert(&#123;&quot;name&quot; : &quot;jw&quot;&#125;) //table1不存在自动创建并且插入数据</span><br><span class="line"></span><br><span class="line">&gt;db.collection.drop() //删除集合</span><br><span class="line"></span><br><span class="line">&gt;db.test.insert(&#123;title:&apos;标题&apos;,&apos;age&apos;:20&#125;) //向test集合插入一条数据</span><br><span class="line"></span><br><span class="line">&gt;db.test.update(&#123;&apos;title&apos;:&apos;标题&apos;&#125;,&#123;$set:&#123;&apos;title&apos;:&apos;MongoDB&apos;&#125;&#125;)  /更新title为&apos;标题的&apos; 数据</span><br><span class="line"></span><br><span class="line">&gt;db.test.remove(&#123;&apos;title&apos;:&apos;标题&apos;&#125;) //删除title为标题的数据</span><br><span class="line"></span><br><span class="line">&gt;db.col.find().pretty() //查询全部数据 pretty格式化数据</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.runoob.com/mongodb/mongodb-tutorial.html" target="_blank" rel="noopener">》》更多资料查看MongoDb教程</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/05/10/MongoDb初探/" class="article-date">
+  <time datetime="2018-05-10T10:06:21.000Z" itemprop="datePublished">2018-05-10</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/05/10/坚持锻炼/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">锻炼</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
