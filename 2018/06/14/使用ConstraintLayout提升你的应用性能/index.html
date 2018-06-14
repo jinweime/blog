@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用ConstraintLayout提升你的应用性能 | JINWEI BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是ConstraintLayout？ ConstraintLayout是在android Studio2.2更新中推出的一个新功能，也是I/O大会上重点解说的一个新特性。在升级的2.3之后项目中创建xml默认就是使用了ConstraintLayout，说明ConstraintLayout确实有让谷歌认可的独到之处。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用ConstraintLayout提升你的应用性能">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/使用ConstraintLayout提升你的应用性能/index.html">
+<meta property="og:site_name" content="JINWEI BLOG">
+<meta property="og:description" content="什么是ConstraintLayout？ ConstraintLayout是在android Studio2.2更新中推出的一个新功能，也是I/O大会上重点解说的一个新特性。在升级的2.3之后项目中创建xml默认就是使用了ConstraintLayout，说明ConstraintLayout确实有让谷歌认可的独到之处。  特点 扁平化布局，减少布局层级，提高GPU的渲染速度，提升应用使用中的流畅度">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsata4dj4jj30lq10879q.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fsatqnzwt0j30yw0l8mxq.jpg">
+<meta property="og:updated_time" content="2018-06-14T09:48:20.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用ConstraintLayout提升你的应用性能">
+<meta name="twitter:description" content="什么是ConstraintLayout？ ConstraintLayout是在android Studio2.2更新中推出的一个新功能，也是I/O大会上重点解说的一个新特性。在升级的2.3之后项目中创建xml默认就是使用了ConstraintLayout，说明ConstraintLayout确实有让谷歌认可的独到之处。  特点 扁平化布局，减少布局层级，提高GPU的渲染速度，提升应用使用中的流畅度">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsata4dj4jj30lq10879q.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-使用ConstraintLayout提升你的应用性能" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用ConstraintLayout提升你的应用性能
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="什么是ConstraintLayout？"><a href="#什么是ConstraintLayout？" class="headerlink" title="什么是ConstraintLayout？"></a>什么是ConstraintLayout？</h3><blockquote>
+<p>ConstraintLayout是在android Studio2.2更新中推出的一个新功能，也是I/O大会上重点解说的一个新特性。在升级的2.3之后项目中创建xml默认就是使用了ConstraintLayout，说明ConstraintLayout确实有让谷歌认可的独到之处。</p>
+</blockquote>
+<p><strong>特点</strong></p>
+<p>扁平化布局，减少布局层级，提高GPU的渲染速度，提升应用使用中的流畅度，提高开发效率 </p>
+<p><strong>案例</strong></p>
+<p>这是一个布局效果图，同时用普通布局和ConstraintLayout来实现，对比下效果。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsata4dj4jj30lq10879q.jpg" alt="demo"></p>
+<p>使用传统布局来构建，XML 文件会包含类似于下面这样的元素层次结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;RelativeLayout&gt;</span><br><span class="line">  &lt;ImageView /&gt;</span><br><span class="line">  &lt;ImageView /&gt;</span><br><span class="line">  &lt;RelativeLayout&gt;</span><br><span class="line">    &lt;TextView /&gt;</span><br><span class="line">    &lt;LinearLayout&gt;</span><br><span class="line">      &lt;TextView /&gt;</span><br><span class="line">      &lt;RelativeLayout&gt;</span><br><span class="line">        &lt;EditText /&gt;</span><br><span class="line">      &lt;/RelativeLayout&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;LinearLayout&gt;</span><br><span class="line">      &lt;TextView /&gt;</span><br><span class="line">      &lt;RelativeLayout&gt;</span><br><span class="line">        &lt;EditText /&gt;</span><br><span class="line">      &lt;/RelativeLayout&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;TextView /&gt;</span><br><span class="line">  &lt;/RelativeLayout&gt;</span><br><span class="line">  &lt;LinearLayout &gt;</span><br><span class="line">    &lt;Button /&gt;</span><br><span class="line">    &lt;Button /&gt;</span><br><span class="line">  &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>使用 ConstraintLayout 来构建相同的布局，XML 文件会包含类似于下面这样的元素层次结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.constraint.ConstraintLayout&gt;</span><br><span class="line">  &lt;ImageView /&gt;</span><br><span class="line">  &lt;ImageView /&gt;</span><br><span class="line">  &lt;TextView /&gt;</span><br><span class="line">  &lt;EditText /&gt;</span><br><span class="line">  &lt;TextView /&gt;</span><br><span class="line">  &lt;TextView /&gt;</span><br><span class="line">  &lt;EditText /&gt;</span><br><span class="line">  &lt;Button /&gt;</span><br><span class="line">  &lt;Button /&gt;</span><br><span class="line">  &lt;TextView /&gt;</span><br><span class="line">&lt;/android.support.constraint.ConstraintLayout&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>从层级上可以看出ConstraintLayout实现了扁平化，没有多余的嵌套，在View的底层实现上少了很多次 测量 布局绘制，大大提高了界面的渲染速度</strong></p>
+<p>通过性能分析工具得到的结果，ConstraintLayout 在测量/布局阶段的性能比 RelativeLayout大约高 40%。<br><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsatqnzwt0j30yw0l8mxq.jpg" alt=""></p>
+<p><strong>Inspector</strong></p>
+<p><strong>Guidelines</strong></p>
+<p><strong>自动添加约束</strong></p>
+<p><a href="https://mp.weixin.qq.com/s/gGR2itbY7hh9fo61SxaMQQ" target="_blank" rel="noopener">解析ConstraintLayout的性能优势</a></p>
+<p><a href="https://blog.csdn.net/guolin_blog/article/details/53122387" target="_blank" rel="noopener">开始使用ConstraintLayou</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/14/使用ConstraintLayout提升你的应用性能/" class="article-date">
+  <time datetime="2018-06-14T08:35:28.000Z" itemprop="datePublished">2018-06-14</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/05/10/MongoDb初探/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MongoDB初探</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
