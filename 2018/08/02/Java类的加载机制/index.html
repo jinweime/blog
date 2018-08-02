@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java类的加载机制 | 金威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类不被初始化的情况 对于静态字段，只有直接定义这个字段的类才会变初始化，子类引用父类的静态字段不会导致子类的初始化，只会初始化父类。  123456789101112131415public class SuperClass &amp;#123;    static &amp;#123;        System.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java类的加载机制">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/Java类的加载机制/index.html">
+<meta property="og:site_name" content="金威的博客">
+<meta property="og:description" content="类不被初始化的情况 对于静态字段，只有直接定义这个字段的类才会变初始化，子类引用父类的静态字段不会导致子类的初始化，只会初始化父类。  123456789101112131415public class SuperClass &amp;#123;    static &amp;#123;        System.out.println(&amp;quot;SuperClass init!&amp;quot;);    &amp;#1">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-be73f172f2708116.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-795eae42a62715a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-55feeadac6c32555.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-692b42be47b777ab.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-08-02T07:36:43.225Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java类的加载机制">
+<meta name="twitter:description" content="类不被初始化的情况 对于静态字段，只有直接定义这个字段的类才会变初始化，子类引用父类的静态字段不会导致子类的初始化，只会初始化父类。  123456789101112131415public class SuperClass &amp;#123;    static &amp;#123;        System.out.println(&amp;quot;SuperClass init!&amp;quot;);    &amp;#1">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1930388-be73f172f2708116.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Java类的加载机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java类的加载机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="类不被初始化的情况"><a href="#类不被初始化的情况" class="headerlink" title="类不被初始化的情况"></a>类不被初始化的情况</h4><ol>
+<li>对于静态字段，只有直接定义这个字段的类才会变初始化，子类引用父类的静态字段不会导致子类的初始化，只会初始化父类。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class SuperClass &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;SuperClass init!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public static int value = 123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class SubClass extends SuperClass &#123;</span><br><span class="line">    public static int aa=32;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;SubClass init!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>数组的定义不会导致类的初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SuperClass[] sca = new SuperClass[10];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用静态常量不会导致类的初始化，因为常量在编译阶段就会存入调用类的常量池，本质上没有引用到定义类的常量，类在被编译成class之后，静态常量和类就没有关系了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ConstClass &#123;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;ConstClass init!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final String HELLOWORLD = &quot;hello world&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> public class Test &#123;</span><br><span class="line"></span><br><span class="line">    @org.junit.Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        System.out.println(ConstClass.HELLOWORLD);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="类加载过程7阶段"><a href="#类加载过程7阶段" class="headerlink" title="类加载过程7阶段"></a>类加载过程7阶段</h4><p>加载、验证、准备、初始化和卸载这5个阶段的顺序是确定的，类的加载过程必须按照这个顺序按部就班的执行。</p>
+<p><strong>何时会执行加载的第一个过程？</strong><br>这么五种情况是肯定会执行的</p>
+<ol>
+<li>在遇到new 、读取或者设置一个类的静态字段(final除外，final在编译期间就放入了常量池)的时候，以及调用一个类的静态方法的时候。</li>
+<li>使用反射调用的时候，如何类没有被初始化则会先触发其初始化。</li>
+<li>类没有没有初始化的时候，如果其父类没有初始化。则需要先触发其父类的初始化。</li>
+<li>执行一个main()方法</li>
+<li>当使用JDK 1.7的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。<br><img src="http://upload-images.jianshu.io/upload_images/1930388-be73f172f2708116.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="类的加载过程7个阶段"></li>
+</ol>
+<h4 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h4><ul>
+<li>加载是类加载的过程的一个阶段，加载到我们的JVM需要需要经过三个过程</li>
+</ul>
+<ol>
+<li>通过一个类名来获取到此类的二进制字节流</li>
+<li>将字节流的静态存储结构转化为方法区运行时的数据结构</li>
+<li>在内存中生成这个类的 Class对象，作为方法区的访问入口。<br><img src="http://upload-images.jianshu.io/upload_images/1930388-795eae42a62715a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JVM加载类图示过程"></li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/1930388-55feeadac6c32555.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="几种类加载器"></p>
+<h4 id="2-验证"><a href="#2-验证" class="headerlink" title="2. 验证"></a>2. 验证</h4><ul>
+<li>验证这个步骤按照深入JAVA虚拟机一书描述的是，很重要的一个步骤。因为这个步骤需要保证，加载进来的Class文件是符合虚拟机规范的，并且不会对虚拟机造成安全危害，这个阶段只要有以下三个操作。</li>
+</ul>
+<ol>
+<li>文件格式验证<br>这个步骤主要是检查字节流是否符合Class文件格式规范，是否以魔数0xCAFEBABE开头,版本号，常量问题。</li>
+</ol>
+<p>下面是一个class得二进制字节码，cafe开头的就是魔数，它是JAVA之父自己定义的一个规则，CafeBabe代表咖啡宝贝，这个也符号Java的咖啡标志。<br><img src="http://upload-images.jianshu.io/upload_images/1930388-692b42be47b777ab.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="魔数"></p>
+<ol>
+<li>元数据验证<br>这个阶段只要是对字节码进行语义分析，以保证字节码符合Java语义的规范，可能包含的检查有这个class是否有父类，是否集成了不允许继承的类比如final修饰的类，是否实现了父类要求实现的接口，字段是否产生了矛盾。</li>
+<li><p>字节码验证<br>这阶段是验证中最复杂的一步，主要是确定class的语义是否合法、符合逻辑，对类的方法体进行验证分析，保证类的方法不会对虚拟机安全造成危害。</p>
+</li>
+<li><p>符号引用验证<br>这个阶段主要是检查class的一些访问修饰符是否符合规范,符号引用验证的目的是确保解析动作能正常执行。</p>
+<h4 id="3-准备"><a href="#3-准备" class="headerlink" title="3. 准备"></a>3. 准备</h4><p>准备阶段是正式为类变量分配内存并设置类初始值的阶段，分配static修饰的变量，这些变量所使用的内存都将在方法区中分配。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static int value = 123</span><br></pre></td></tr></table></figure>
+<p>value变量在被分配的时候，它的值不会是123而是默认的0。因为这个过程还未执行到Java代码，赋值为123的操作将在初始化阶段完成。</p>
+<h4 id="4-解析"><a href="#4-解析" class="headerlink" title="4. 解析"></a>4. 解析</h4><ul>
+<li>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程，</li>
+</ul>
+<ol>
+<li>符号引用以一组符号来描述所引用的目标，它可以是新形势的字面量。</li>
+<li>直接引用是指向目标的指针、相对偏移量或者一个能直接定位到目标的句柄。</li>
+</ol>
+<p>解析类型主要有</p>
+<ol>
+<li>类接口的解析</li>
+<li>字段解析</li>
+<li>类方法解析</li>
+<li>接口方法解析</li>
+</ol>
+<h4 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5. 初始化"></a>5. 初始化</h4><p>类初始化是类加载过程中的最后一步，到了初始化阶段虚拟机才真正开始执行Java程序代码，准备阶段变量已经赋值过系统要求的初始值，而初始化阶段则回去初始化class的类变量和其他资源。</p>
+<h4 id="6-使用"><a href="#6-使用" class="headerlink" title="6. 使用"></a>6. 使用</h4><p>到了使用这一步就说明class已经正确的执行完了类加载的过程，class已经被加载到了虚拟机中，能被Java代码正确调用的过程。</p>
+<h4 id="7-卸载"><a href="#7-卸载" class="headerlink" title="7. 卸载"></a>7. 卸载</h4><p>该类所有的实例都已经被GC，也就是JVM中不存在该Class的任何实例。</p>
+<ul>
+<li>加载该类的ClassLoader已经被GC。</li>
+<li>该类的java.lang.Class 对象没有在任何地方被引用，如不能在任何地方通过反射访问该类的方法</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/08/02/Java类的加载机制/" class="article-date">
+  <time datetime="2018-08-02T07:33:26.000Z" itemprop="datePublished">2018-08-02</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/06/21/大西北青海之行/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">大西北青海之行</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
