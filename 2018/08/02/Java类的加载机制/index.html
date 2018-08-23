@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-795eae42a62715a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-55feeadac6c32555.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-692b42be47b777ab.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-02T07:36:43.225Z">
+<meta property="og:updated_time" content="2018-08-02T11:04:58.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java类的加载机制">
 <meta name="twitter:description" content="类不被初始化的情况 对于静态字段，只有直接定义这个字段的类才会变初始化，子类引用父类的静态字段不会导致子类的初始化，只会初始化父类。  123456789101112131415public class SuperClass &amp;#123;    static &amp;#123;        System.out.println(&amp;quot;SuperClass init!&amp;quot;);    &amp;#1">
@@ -121,8 +121,12 @@
 </ol>
 <p>解析类型主要有</p>
 <ol>
-<li>类接口的解析</li>
+<li>类接口的解析<blockquote>
+<ol>
 <li>字段解析</li>
+</ol>
+</blockquote>
+</li>
 <li>类方法解析</li>
 <li>接口方法解析</li>
 </ol>
