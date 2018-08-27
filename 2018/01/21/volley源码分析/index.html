@@ -8,7 +8,7 @@
   <meta name="description" content="1.HTTP协议了解http是一种应用层的协议，底层通过TCP来进行可靠的数据传输。HTTP是基于TCP的应用层协议，它在更高的层次封装了TCP的使用细节，使网络请求更加易用，TCP连接是因特网基于流的一种可靠连接，它为HTTP提供了一条可靠的比特传输管道。从TCP连接一端填入的字节会从另一端以原有的顺序、正确的传送过">
 <meta property="og:type" content="article">
 <meta property="og:title" content="volley源码分析">
-<meta property="og:url" content="https://jinweime.github.io/jinweime.io/2018/01/21/volley源码分析/index.html">
+<meta property="og:url" content="https://github.com/jinweime/blog.git/2018/01/21/volley源码分析/index.html">
 <meta property="og:site_name" content="金威的博客">
 <meta property="og:description" content="1.HTTP协议了解http是一种应用层的协议，底层通过TCP来进行可靠的数据传输。HTTP是基于TCP的应用层协议，它在更高的层次封装了TCP的使用细节，使网络请求更加易用，TCP连接是因特网基于流的一种可靠连接，它为HTTP提供了一条可靠的比特传输管道。从TCP连接一端填入的字节会从另一端以原有的顺序、正确的传送过来。  HTTP的7种请求方式GETPOSTDELETEPUTHEADTRACE">
 <meta property="og:image" content="http://or66xwp90.bkt.clouddn.com/11.png">
@@ -24,9 +24,9 @@
   
     <link rel="icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/jinweime.io/css/typing.css">
+  <link rel="stylesheet" href="/blog.git/css/typing.css">
   
-  <link rel="stylesheet" href="/jinweime.io/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/blog.git/css/font-awesome.min.css">
   
 </head>
 
@@ -40,11 +40,11 @@
   <header id="header" class="header">
   <nav id="main-nav" class="main-nav">
     
-      <a class="main-nav-link" href="/jinweime.io/">Home</a>
+      <a class="main-nav-link" href="/blog.git/">Home</a>
     
-      <a class="main-nav-link" href="/jinweime.io/archives">Archives</a>
+      <a class="main-nav-link" href="/blog.git/archives">Archives</a>
     
-      <a class="main-nav-link" href="/jinweime.io/about">About</a>
+      <a class="main-nav-link" href="/blog.git/about">About</a>
     
   </nav>
 </header>
@@ -135,7 +135,7 @@
 <p><strong>使用HttpUrlConnection请求</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">fun sendHttpClient(url: String) &#123;</span><br><span class="line">        val url = URL(url)</span><br><span class="line">        var conn = url.openConnection() as HttpURLConnection</span><br><span class="line">        //读取时时间为 2s</span><br><span class="line">        conn.readTimeout = 2000</span><br><span class="line">        //请求超时时间为 5s</span><br><span class="line">        conn.connectTimeout = 5000</span><br><span class="line">        //设置请求方式</span><br><span class="line">        conn.requestMethod = &quot;POST&quot;</span><br><span class="line">        //接收输入流</span><br><span class="line">        conn.doInput = true</span><br><span class="line">        //启动输出流，需要传递参数时需要开启</span><br><span class="line">        conn.doInput = true</span><br><span class="line">        //添加 Header</span><br><span class="line">        conn.setRequestProperty(&quot;Connection&quot;, &quot;Keep-Alive&quot;)</span><br><span class="line">        //添加请求参数</span><br><span class="line">        var paramsList = ArrayList&lt;NameValuePair&gt;()</span><br><span class="line">        paramsList.add(BasicNameValuePair(&quot;username&quot;, &quot;jinwei&quot;))</span><br><span class="line">        paramsList.add(BasicNameValuePair(&quot;pwd&quot;, &quot;pwd.com&quot;))</span><br><span class="line">        writeParams(conn.outputStream, paramsList)</span><br><span class="line">        //发起请求</span><br><span class="line">        conn.connect()</span><br><span class="line">        var input = conn.inputStream</span><br><span class="line">        //获取结果</span><br><span class="line">        var str = convertStreamToString(input)</span><br><span class="line">        Log.i(TAG, &quot;Request Data: &quot; + str)</span><br><span class="line">        input.close()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun writeParams(outpit: OutputStream, paramsList: List&lt;NameValuePair&gt;) &#123;</span><br><span class="line">        val paramStr = StringBuffer()</span><br><span class="line">        for (value in paramsList) &#123;</span><br><span class="line">            if (!TextUtils.isEmpty(paramStr)) &#123;</span><br><span class="line">                paramStr.append(&quot;&amp;&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            paramStr.append(URLEncoder.encode(value.name, &quot;UTF-8&quot;))</span><br><span class="line">            paramStr.append(&quot;=&quot;)</span><br><span class="line">            paramStr.append(URLEncoder.encode(value.value, &quot;UTF-8&quot;))</span><br><span class="line">        &#125;</span><br><span class="line">        var writer = BufferedWriter(OutputStreamWriter(outpit, &quot;UTF-8&quot;))</span><br><span class="line">        //写入参数写入输入流</span><br><span class="line">        Log.i(TAG, paramStr.toString())</span><br><span class="line">        writer.write(paramStr.toString())</span><br><span class="line">        writer.flush()</span><br><span class="line">        writer.close()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    fun convertStreamToString(input: InputStream): String &#123;</span><br><span class="line">        var buffer = BufferedReader(InputStreamReader(input))</span><br><span class="line">        var sb = StringBuffer()</span><br><span class="line">        var line: String</span><br><span class="line">        try &#123;</span><br><span class="line">            while (true) &#123;</span><br><span class="line">                line = buffer.readLine()</span><br><span class="line">                if (!TextUtils.isEmpty(line)) &#123;</span><br><span class="line">                    sb.append(line + &quot;\n&quot;)</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    break</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (e: IOException) &#123;</span><br><span class="line">            e.printStackTrace()</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-Volley使用"><a href="#2-Volley使用" class="headerlink" title="2. Volley使用"></a>2. Volley使用</h3><p><a href="https://developer.android.com/training/volley/index.html" target="_blank" rel="noopener">官方文档</a></p>
-<p><a href="https://github.com/google/volley" target="_blank" rel="noopener">github</a></p>
+<p><a href="https://github.com/google/volley">github</a></p>
 <p><a href="https://www.youtube.com/watch?v=yhv8l9F44qo" target="_blank" rel="noopener">VIDEO介绍</a><br><img src="http://or66xwp90.bkt.clouddn.com/QQ20171213-190709@2x.png" alt="安静"></p>
 <p>volley的架构图</p>
 <p><img src="http://or66xwp90.bkt.clouddn.com/volley-request%202.png" alt="架构图"></p>
@@ -196,7 +196,7 @@
       <ul class="article-meta">
         <li>
           <span class="label">Published Date:</span>
-          <a href="/jinweime.io/2018/01/21/volley源码分析/" class="article-date">
+          <a href="/blog.git/2018/01/21/volley源码分析/" class="article-date">
   <time datetime="2018-01-21T15:11:20.000Z" itemprop="datePublished">2018-01-21</time>
 </a>
 
@@ -211,7 +211,7 @@
     
 <nav id="article-nav" class="article-nav">
   
-    <a href="/jinweime.io/2018/01/22/单例模式花样玩法/" id="article-nav-newer" class="article-nav-link-wrap newer">
+    <a href="/blog.git/2018/01/22/单例模式花样玩法/" id="article-nav-newer" class="article-nav-link-wrap newer">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -221,7 +221,7 @@
     </a>
   
   
-    <a href="/jinweime.io/2018/01/11/android8-0自动缩小字体特性/" id="article-nav-older" class="article-nav-link-wrap older">
+    <a href="/blog.git/2018/01/11/android8-0自动缩小字体特性/" id="article-nav-older" class="article-nav-link-wrap older">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">android8.0自动缩小字体特性</div>
     </a>
@@ -266,11 +266,11 @@
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/jinweime.io/fancybox/jquery.fancybox.css">
-  <script src="/jinweime.io/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/blog.git/fancybox/jquery.fancybox.css">
+  <script src="/blog.git/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/jinweime.io/js/typing.js"></script>
+<script src="/blog.git/js/typing.js"></script>
 <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 
 

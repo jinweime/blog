@@ -8,7 +8,7 @@
   <meta name="description" content="单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。  何为单例在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 app">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单例模式花样玩法">
-<meta property="og:url" content="https://jinweime.github.io/jinweime.io/2018/01/22/单例模式花样玩法/index.html">
+<meta property="og:url" content="https://github.com/jinweime/blog.git/2018/01/22/单例模式花样玩法/index.html">
 <meta property="og:site_name" content="金威的博客">
 <meta property="og:description" content="单例模式是设计模式中最为简单的一种，理解比较容易，但也是需要注意地方比较多的一种设计模式。往严格来说它设计到线程安全问题，指令重排序优化一些隐晦的性能问题。  何为单例在一个程序或者系统中某个对象只需要初始化一个出来，创建完成后任何地方都能使用到它，它通常是比较独立、使用频繁、作用关键的。比如在android的 application，这是一个全局的只要程序还存在进程，任何地方都可以使用到它，而">
 <meta property="og:updated_time" content="2018-01-28T02:11:19.941Z">
@@ -19,9 +19,9 @@
   
     <link rel="icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/jinweime.io/css/typing.css">
+  <link rel="stylesheet" href="/blog.git/css/typing.css">
   
-  <link rel="stylesheet" href="/jinweime.io/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/blog.git/css/font-awesome.min.css">
   
 </head>
 
@@ -35,11 +35,11 @@
   <header id="header" class="header">
   <nav id="main-nav" class="main-nav">
     
-      <a class="main-nav-link" href="/jinweime.io/">Home</a>
+      <a class="main-nav-link" href="/blog.git/">Home</a>
     
-      <a class="main-nav-link" href="/jinweime.io/archives">Archives</a>
+      <a class="main-nav-link" href="/blog.git/archives">Archives</a>
     
-      <a class="main-nav-link" href="/jinweime.io/about">About</a>
+      <a class="main-nav-link" href="/blog.git/about">About</a>
     
   </nav>
 </header>
@@ -98,7 +98,7 @@
 <p><strong>最后</strong></p>
 <p>不管以哪种形式实现单例模式，它们的核心原理都是将构造函数私有化，并且通过静态方法获取一个唯一的实例，在这个获取的过程中你必须保证线程安全、反序列化导致重新生成实例对象等问题，该模式简单，但使用率较高。一般情况下直接使用饿汉式就好了，如果明确要求要懒加载（lazy initialization）会倾向于使用静态内部类，如果涉及到反序列化创建对象时会试着使用枚举的方式来实现单例。</p>
 <p><a href="http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/" target="_blank" rel="noopener">如何正确地写出单例模式</a></p>
-<p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/singleton/mr.simple" target="_blank" rel="noopener">Android设计模式源码解析之单例模式</a></p>
+<p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/singleton/mr.simple">Android设计模式源码解析之单例模式</a></p>
 
       
     </div>
@@ -106,7 +106,7 @@
       <ul class="article-meta">
         <li>
           <span class="label">Published Date:</span>
-          <a href="/jinweime.io/2018/01/22/单例模式花样玩法/" class="article-date">
+          <a href="/blog.git/2018/01/22/单例模式花样玩法/" class="article-date">
   <time datetime="2018-01-22T09:15:56.000Z" itemprop="datePublished">2018-01-22</time>
 </a>
 
@@ -121,7 +121,7 @@
     
 <nav id="article-nav" class="article-nav">
   
-    <a href="/jinweime.io/2018/02/07/gradle构建变种版本/" id="article-nav-newer" class="article-nav-link-wrap newer">
+    <a href="/blog.git/2018/02/07/gradle构建变种版本/" id="article-nav-newer" class="article-nav-link-wrap newer">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -131,7 +131,7 @@
     </a>
   
   
-    <a href="/jinweime.io/2018/01/21/volley源码分析/" id="article-nav-older" class="article-nav-link-wrap older">
+    <a href="/blog.git/2018/01/21/volley源码分析/" id="article-nav-older" class="article-nav-link-wrap older">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">volley源码分析</div>
     </a>
@@ -176,11 +176,11 @@
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/jinweime.io/fancybox/jquery.fancybox.css">
-  <script src="/jinweime.io/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/blog.git/fancybox/jquery.fancybox.css">
+  <script src="/blog.git/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/jinweime.io/js/typing.js"></script>
+<script src="/blog.git/js/typing.js"></script>
 <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 
 
