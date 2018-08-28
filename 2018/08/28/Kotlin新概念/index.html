@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin新概念 | 金威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在使用Kotlin过程中经常会有一些新的概念出来，这里在在学习过程中比这些新概念做了一个记录。  函数 标签 伸展（spread） 中缀 局部函数 成员函数 区间 对象表达 安全类型转换  函数kotlin 函数以fun来标识,使用方式和java一样，同一类使用直接调用，如果是通过类引用则使用 ‘类名.model()’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin新概念">
+<meta property="og:url" content="http://github.com/jinweime/blog.git/2018/08/28/Kotlin新概念/index.html">
+<meta property="og:site_name" content="金威的博客">
+<meta property="og:description" content="在使用Kotlin过程中经常会有一些新的概念出来，这里在在学习过程中比这些新概念做了一个记录。  函数 标签 伸展（spread） 中缀 局部函数 成员函数 区间 对象表达 安全类型转换  函数kotlin 函数以fun来标识,使用方式和java一样，同一类使用直接调用，如果是通过类引用则使用 ‘类名.model()’ 来引用 123fun mode()&amp;#123;        //...">
+<meta property="og:updated_time" content="2018-08-28T08:01:54.174Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin新概念">
+<meta name="twitter:description" content="在使用Kotlin过程中经常会有一些新的概念出来，这里在在学习过程中比这些新概念做了一个记录。  函数 标签 伸展（spread） 中缀 局部函数 成员函数 区间 对象表达 安全类型转换  函数kotlin 函数以fun来标识,使用方式和java一样，同一类使用直接调用，如果是通过类引用则使用 ‘类名.model()’ 来引用 123fun mode()&amp;#123;        //...">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/blog/css/typing.css">
+  
+  <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Kotlin新概念" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/blog/">Home</a>
+    
+      <a class="main-nav-link" href="/blog/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/blog/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin新概念
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>在使用Kotlin过程中经常会有一些新的概念出来，这里在在学习过程中比这些新概念做了一个记录。</p>
+<ul>
+<li>函数</li>
+<li>标签</li>
+<li>伸展（spread）</li>
+<li>中缀</li>
+<li>局部函数</li>
+<li>成员函数</li>
+<li>区间</li>
+<li>对象表达</li>
+<li>安全类型转换</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>kotlin 函数以fun来标识,使用方式和java一样，同一类使用直接调用，如果是通过类引用则使用 ‘类名.model()’ 来引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun mode()&#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>当前类使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var value = model()</span><br></pre></td></tr></table></figure>
+<p>其他类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类名.mode()</span><br></pre></td></tr></table></figure>
+<p>根据返回的值自动推断类型  return string Type</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun model() = &quot;jinwei&quot; + 20</span><br></pre></td></tr></table></figure>
+<p>根据返回的值自动推断类型 return int Type</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun model2() = 32</span><br></pre></td></tr></table></figure>
+<p>等价于 fun model3()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun model3() = Unit</span><br></pre></td></tr></table></figure>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><p>标签是为了方便跳转到指定位置，常和 break 和 continue 搭配使用。但是Kotlin中的标签还可以和 return 搭配使用，表示在标签处返回。</p>
+<p><strong>simple</strong></p>
+<p>这段代码的j==2时调用了break，所以这次的执行被返回了出去，继续下一次i的执行；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fun f() &#123;</span><br><span class="line">          for (i in 0..10) &#123;</span><br><span class="line">                  for (j in 0..2) &#123;</span><br><span class="line">                      if (j == 2) &#123;</span><br><span class="line">                          break</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们希望break调整个循环体，就可以用标签了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lable@</span><br></pre></td></tr></table></figure>
+<p>这种方式命名，name自己定义后面跟入一个@符号</p>
+<p>这次加入了标签，break到了loop标签的地方。直接就会结束标签定义的地方，继续往下执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fun f() &#123;</span><br><span class="line">            loop@for (i in 0..10) &#123;</span><br><span class="line">                for (j in 0..2) &#123;</span><br><span class="line">                    if (i == 2) &#123;</span><br><span class="line">                        break@loop</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;这里会继续执行&quot;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>标签处返回</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    val ints = intArrayOf(1, 2, 3, 0, 4, 5, 6)</span><br><span class="line">    ints.forEach &#123;</span><br><span class="line">        if (it == 0) return</span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中的 return 指的是从 main 函数中返回，因为 main 函数是最直接包围它的函数。所以运行结果为：</p>
+<p>123</p>
+<p>如果想要从 forEach 中的 lambda 表达式中返回，就需要使用标签了。代码如下，在 lambda 表达式的前面声明一个标签<code>lit@</code>，然后在 <em>return</em> 处使用标签，即<code>[return@lit](mailto:return@lit)</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val ints = intArrayOf(1, 2, 3, 0, 4, 5, 6)</span><br><span class="line">ints.forEach lit@ &#123;</span><br><span class="line">    if (it == 0) return@lit</span><br><span class="line">    print(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果为：</p>
+<p>123456</p>
+<p><strong>可变操作参数</strong></p>
+<p>参数的最后一个或者第一个可以被vararg标记，变量会变成array类型，类似于java中的 int…可变参数一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun mode2(vararg ts: Int) &#123;</span><br><span class="line">       System.out.print(ts[3])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="伸展（spread）操作符，可以将数组传递给函数。"><a href="#伸展（spread）操作符，可以将数组传递给函数。" class="headerlink" title="伸展（spread）操作符，可以将数组传递给函数。"></a>伸展（spread）操作符，可以将数组传递给函数。</h3><p>可以看到在变量的前面加入了*符号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var v = intArrayOf(1, 2)</span><br><span class="line">mode2(1, 1, *v)</span><br></pre></td></tr></table></figure></p>
+<h3 id="中缀"><a href="#中缀" class="headerlink" title="中缀"></a>中缀</h3><p> 中缀表示法三个条件 </p>
+<ol>
+<li>它们必须是成员函数或扩展函数  </li>
+<li>它们必须只有一个参数； </li>
+<li>其参数不得接受可变数量的参数且不能有默认值</li>
+</ol>
+<ul>
+<li>Int.model代表只能通过Int来调用或者是其他的类型，基本类型，对象都可以。</li>
+<li>this代表调用的的对象</li>
+<li>这里只能通过Int来调用，其他类型会编译错误 1 model2 2</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">infix fun Int.model2(v: Int): Int &#123;</span><br><span class="line">       System.out.print(&quot;中缀函数,实例是:$this,参数是$v&quot;)</span><br><span class="line">       return v</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>中缀函数调用的优先级低于算术操作符、类型转换以及 rangeTo 操作符</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 model2 2 * 2</span><br></pre></td></tr></table></figure>
+<p> 等于 1 model2(2*2)  先会运行有算数运算符的逻辑，才去执行方法的调用</p>
+<p><strong>另一方面，中缀函数调用的优先级高于布尔操作符 &amp;&amp; 与 ||、is- 与 in- 检测以及其他一些操作符</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 model2 2 == 2</span><br></pre></td></tr></table></figure>
+<p>先执行前面的中缀，在执行布尔运行</p>
+<h3 id="局部函数"><a href="#局部函数" class="headerlink" title="局部函数"></a>局部函数</h3><p>局部函数，内部函数可以访问外部变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun model3() &#123;</span><br><span class="line">       var value = 20</span><br><span class="line">       fun testModel() &#123;</span><br><span class="line">           System.out.print(value)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>在类或者对象的内部声明，通过实例来调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Simple &#123;</span><br><span class="line">       fun foo() &#123;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun &lt;T&gt; getTbean(item: T): T &#123;</span><br><span class="line"></span><br><span class="line">        return item</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>数组</strong></p>
+<p>kotlin 使用Array来表示数组，通过库函数arrayOf来创建。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fun test() &#123;</span><br><span class="line">       // 创建一个 Array&lt;String&gt; 初始化为 [&quot;0&quot;, &quot;1&quot;, &quot;4&quot;, &quot;9&quot;, &quot;16&quot;]</span><br><span class="line">       val asc = Array(5) &#123; i -&gt; (i * i).toString() &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       //初始化string数组，只有一个元素</span><br><span class="line">       val arrayOf = arrayOf(String)</span><br><span class="line">       //初始化MainClass数组，只有一个元素</span><br><span class="line">       val arrayOf1 = arrayOf(MainClass)</span><br><span class="line"></span><br><span class="line">       //指定大小，元素为null的数组</span><br><span class="line">       val arrayOfNulls = arrayOfNulls&lt;String&gt;(size = 2)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>字符串</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun stringTest() &#123;</span><br><span class="line">        val s = &quot;Hello, world!&quot;</span><br><span class="line">        println(&quot;$s.length is $&#123;s.length&#125;&quot;) // 输出“abc.length is 3”</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>区间</strong></p>
+<p>0..10执行0-10直接的数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (item in 0..10) &#123;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>倒序</strong><br>执行4-1之间的数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (i in 4 downTo 1) print(i)</span><br></pre></td></tr></table></figure></p>
+<p><strong>step</strong></p>
+<p>step 3代表每隔3打印一次       打印124</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (i in 1..10 step 3) println(i)</span><br></pre></td></tr></table></figure>
+<p>要创建一个不包括其结束元素的区间，可以使用 until 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (i in 1 until 10) &#123;</span><br><span class="line">    // i in [1, 10) 排除了 10</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>对象表达式</strong><br>类似于java中的匿名内部类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//这是一个对象</span><br><span class="line"> var a = object &#123;</span><br><span class="line">     fun create() &#123;&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> object C &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>伴生对象</strong><br>这是一个伴生对象，可以直接通过类名来使用A内部的方法和变量<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">companion object A &#123;</span><br><span class="line">      fun create() &#123;&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>数据类</strong></p>
+<p>数据类通过data 来标识类，特有以下特点。<br>编译器自动从主构造函数中声明的所有属性导出以下成员：</p>
+<ul>
+<li><code>equals()</code>/<code>hashCode()</code> 对；</li>
+<li><code>toString()</code> 格式是 <code>&quot;User(name=John, age=42)&quot;</code>；</li>
+<li><a href="https://www.kotlincn.net/docs/reference/multi-declarations.html" target="_blank" rel="noopener"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性；</li>
+<li><code>copy()</code> 函数（见下文）。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data class JinBean(var name: String, var age: Int) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>普通对象是不会具有这类特性的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var data = JinBean(&quot;JINWEI&quot;, 20)</span><br><span class="line">var data2 = data.copy()</span><br><span class="line">data2.age = 22</span><br><span class="line">println(data.toString())</span><br><span class="line">println(data2.toString())</span><br></pre></td></tr></table></figure>
+<p>输出  20<br>输出 22<br>通过copy没有影响到对方的值，如果没有data的话。这里的输出会是一样的，因为他们指向的引用到是同一个对象。</p>
+<p><strong>内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> class TT2 &#123;</span><br><span class="line"></span><br><span class="line">        var aa = 220</span><br><span class="line"></span><br><span class="line">        //内部类无法访问外部成员</span><br><span class="line">        class tt2 &#123;</span><br><span class="line">            fun m2() &#123;</span><br><span class="line">//                aa = 20////无法访问</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //inner标记的类会带有一个外部类对象的引用，可以访问外部成员。</span><br><span class="line">        inner class tt3 &#123;</span><br><span class="line"></span><br><span class="line">            fun m2() &#123;</span><br><span class="line">                aa = 20</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>解构</strong></p>
+<p>定义一个实体类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data class P2(var age: Int, var name: String) &#123;</span><br><span class="line"></span><br><span class="line">       var number = 2</span><br><span class="line"></span><br><span class="line">       operator fun component3(): Int &#123;</span><br><span class="line">           return number</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>解构声明,意思就是通过var(x,x) = p的方式把对象的构造参数，通过拆解的方式单独声明一个变量。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var pp: P2 = P2(20, &quot;jw&quot;)</span><br><span class="line">var (age, name) = pp</span><br><span class="line">println(age)</span><br><span class="line">println(name)</span><br></pre></td></tr></table></figure>
+<p> 在Kotlin-数据类中，我们已经了解到编译器会根据主构造器中声明的全部属性, 自动推断产生componentN() 函数群, 这些函数与类的属性对应, 函数名中的数字1到N,与属性的声明顺序一致<br>解构声明在编译时将被分解为以下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val name = person.component1()</span><br><span class="line">val age = person.component2()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>解构for循环</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var p1 = P2(20, &quot;jw&quot;)</span><br><span class="line">var p2 = P2(20, &quot;jw&quot;)</span><br><span class="line">var p3 = P2(20, &quot;jw&quot;)</span><br><span class="line">val listOf = listOf(p1, p2, p3)</span><br><span class="line">for ((name, age) in listOf) &#123;</span><br><span class="line">    println(&quot;age=$age name=$name&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义componentN，默认解构只会解构造函数里面的变量，如果需要解构我们自己的成员变量，就需要自定义了。<br>对于自定义的componentN()，需要注意以下几点：</p>
+<ol>
+<li>componentN()函数需要标记为 operator , 才可以在解构声明中使用</li>
+<li>componentN()函数的返回值类型必须与属性类型一致</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var p4 = P2(20, &quot;jw&quot;)</span><br><span class="line">p4.number = 200</span><br><span class="line">var (name, age, sex) = p4</span><br><span class="line">println(&quot;age=$age name=$name number$sex&quot;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Map</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var p11 = P2(210, &quot;jw&quot;)</span><br><span class="line"> var p22 = P2(210, &quot;jw&quot;)</span><br><span class="line"> var p32 = P2(210, &quot;jw&quot;)</span><br><span class="line"> val mutableMapOf = mutableMapOf&lt;String, P2&gt;()</span><br><span class="line"> mutableMapOf.put(&quot;1&quot;, p11)</span><br><span class="line"> mutableMapOf.put(&quot;2&quot;, p22)</span><br><span class="line"> mutableMapOf.put(&quot;3&quot;, p32)</span><br><span class="line"> for ((age, name) in mutableMapOf) &#123;</span><br><span class="line">     println(&quot;age=$age name=$name &quot;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>安全类型转换</strong></p>
+<p>如果对象不是目标类型，那么常规类型转换可能会导致 ClassCastException。 另一个选择是使用安全的类型转换，如果尝试转换不成功则返回 null：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> var v1: String? = &quot;&quot;</span><br><span class="line"> var v2: Int? = v1 as Int</span><br><span class="line"></span><br><span class="line">这样转换会出现异常</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer</span><br><span class="line">	at kt.JAVA2$Companion.main(JAVA2.kt:57)</span><br><span class="line">	at kt.JAVA2.main(JAVA2.kt)</span><br></pre></td></tr></table></figure>
+<p>使用安全转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var v1: String? = &quot;&quot;</span><br><span class="line">var v2: Int? = v1 as? Int</span><br></pre></td></tr></table></figure>
+<p>as?这样转换不会报错，会返回null。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/blog/2018/08/28/Kotlin新概念/" class="article-date">
+  <time datetime="2018-08-28T07:54:58.000Z" itemprop="datePublished">2018-08-28</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/blog/2018/08/28/Lifecycle LiveData 与 ViewModel/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Lifecycle LiveData与ViewModel
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/08/28/Glide图片库使用/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Glide图片库使用</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="archives"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
