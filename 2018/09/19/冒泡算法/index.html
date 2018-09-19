@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>冒泡算法 | 金威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="冒泡排序是排序算法中比较简单的一种，它的排序逻辑就是，依次从0位N位进行排序，首先第一次排序获取到0下标的值，然后在根据这个值对数据元素内的全部值进行依次比对，如果达到条件就交换位置继续比对，直到遍历完元素内的全部值为止。 算法图解  第一次比较   可以看到[8,1,2,9,3,7,4]是初始数据，先从0下标的8对元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冒泡算法">
+<meta property="og:url" content="http://github.com/jinweime/blog.git/2018/09/19/冒泡算法/index.html">
+<meta property="og:site_name" content="金威的博客">
+<meta property="og:description" content="冒泡排序是排序算法中比较简单的一种，它的排序逻辑就是，依次从0位N位进行排序，首先第一次排序获取到0下标的值，然后在根据这个值对数据元素内的全部值进行依次比对，如果达到条件就交换位置继续比对，直到遍历完元素内的全部值为止。 算法图解  第一次比较   可以看到[8,1,2,9,3,7,4]是初始数据，先从0下标的8对元素内的每个元素依次比较，8没有比较是因为自己本身不需要比较所以省略。    第二">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-320f1d465744dc1f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-2191e2fc75810de6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-09-19T07:14:40.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="冒泡算法">
+<meta name="twitter:description" content="冒泡排序是排序算法中比较简单的一种，它的排序逻辑就是，依次从0位N位进行排序，首先第一次排序获取到0下标的值，然后在根据这个值对数据元素内的全部值进行依次比对，如果达到条件就交换位置继续比对，直到遍历完元素内的全部值为止。 算法图解  第一次比较   可以看到[8,1,2,9,3,7,4]是初始数据，先从0下标的8对元素内的每个元素依次比较，8没有比较是因为自己本身不需要比较所以省略。    第二">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1930388-320f1d465744dc1f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/blog/css/typing.css">
+  
+  <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-冒泡算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/blog/">Home</a>
+    
+      <a class="main-nav-link" href="/blog/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/blog/about">About</a>
+    
+      <a class="main-nav-link" href="/blog/Link">Link</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      冒泡算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>冒泡排序是排序算法中比较简单的一种，它的排序逻辑就是，依次从0位N位进行排序，首先第一次排序获取到0下标的值，然后在根据这个值对数据元素内的全部值进行依次比对，如果达到条件就交换位置继续比对，直到遍历完元素内的全部值为止。</p>
+<p><strong>算法图解</strong></p>
+<ol>
+<li>第一次比较</li>
+</ol>
+<ul>
+<li>可以看到[8,1,2,9,3,7,4]是初始数据，先从0下标的8对元素内的每个元素依次比较，8没有比较是因为自己本身不需要比较所以省略。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1930388-320f1d465744dc1f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<ol>
+<li>第二次比较</li>
+</ol>
+<ul>
+<li>比对完成0下标的8后，依次对1下标的值重复上面的步骤，为了画图方便这里的图片没有考虑第一次已经排序完的值了。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1930388-2191e2fc75810de6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<ol>
+<li>第N此比较</li>
+</ol>
+<ul>
+<li>依次类推对后面的值进行依次重复步骤直到全部遍历完为止</li>
+</ul>
+<p><strong>代码逻辑</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 冒泡排序</span><br><span class="line">     */</span><br><span class="line">    private static void maoPao() &#123;</span><br><span class="line">        int[] array = new int[]&#123;9, 6, 8, 7, 1, 100, 3, 2, 0, 4&#125;;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            for (int j = i + 1; j &lt; array.length; j++) &#123;</span><br><span class="line">                int temp = 0;</span><br><span class="line">                int iIndex = array[i];</span><br><span class="line">                int jIndex = array[j];</span><br><span class="line">                if (jIndex &lt; iIndex) &#123;</span><br><span class="line">                    temp = iIndex;</span><br><span class="line">                    array[i] = jIndex;</span><br><span class="line">                    array[j] = temp;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //打印</span><br><span class="line">        for (int i : array) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>输出log</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">100</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/blog/2018/09/19/冒泡算法/" class="article-date">
+  <time datetime="2018-09-19T07:13:37.000Z" itemprop="datePublished">2018-09-19</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/blog/2018/09/03/LruCache缓存使用/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LruCache缓存使用</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="archives"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
