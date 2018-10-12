@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>复杂度分析 | 金威的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是复杂度分析平常写代码的时候可能从来不会去考虑说这段代码的时间复杂度和空间复杂度是多少，最近接触了极客专栏王铮老师的数据结构专栏课才对这方面的知识有了些了解，抱着学知识不怕水深的态度学了几课，感觉受益匪浅下面这些是一些对复杂度理论的一些了解和记录。 复杂度分析的理论基础的建立在数据结构和算法之上的，只有在数据结构和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复杂度分析">
+<meta property="og:url" content="http://github.com/jinweime/blog.git/2018/10/12/复杂度分析/index.html">
+<meta property="og:site_name" content="金威的博客">
+<meta property="og:description" content="什么是复杂度分析平常写代码的时候可能从来不会去考虑说这段代码的时间复杂度和空间复杂度是多少，最近接触了极客专栏王铮老师的数据结构专栏课才对这方面的知识有了些了解，抱着学知识不怕水深的态度学了几课，感觉受益匪浅下面这些是一些对复杂度理论的一些了解和记录。 复杂度分析的理论基础的建立在数据结构和算法之上的，只有在数据结构和算法的地方复杂度理论才会有用武之地，复杂度分析可以说是整个算法那学习的精髓，掌握">
+<meta property="og:updated_time" content="2018-10-12T07:42:43.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="复杂度分析">
+<meta name="twitter:description" content="什么是复杂度分析平常写代码的时候可能从来不会去考虑说这段代码的时间复杂度和空间复杂度是多少，最近接触了极客专栏王铮老师的数据结构专栏课才对这方面的知识有了些了解，抱着学知识不怕水深的态度学了几课，感觉受益匪浅下面这些是一些对复杂度理论的一些了解和记录。 复杂度分析的理论基础的建立在数据结构和算法之上的，只有在数据结构和算法的地方复杂度理论才会有用武之地，复杂度分析可以说是整个算法那学习的精髓，掌握">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/blog/css/typing.css">
+  
+  <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-复杂度分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/blog/">Home</a>
+    
+      <a class="main-nav-link" href="/blog/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/blog/about">About</a>
+    
+      <a class="main-nav-link" href="/blog/Link">Link</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      复杂度分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="什么是复杂度分析"><a href="#什么是复杂度分析" class="headerlink" title="什么是复杂度分析"></a>什么是复杂度分析</h4><p>平常写代码的时候可能从来不会去考虑说这段代码的时间复杂度和空间复杂度是多少，最近接触了极客专栏王铮老师的数据结构专栏课才对这方面的知识有了些了解，抱着学知识不怕水深的态度学了几课，感觉受益匪浅下面这些是一些对复杂度理论的一些了解和记录。</p>
+<p>复杂度分析的理论基础的建立在数据结构和算法之上的，只有在数据结构和算法的地方复杂度理论才会有用武之地，复杂度分析可以说是整个算法那学习的精髓，掌握了它数据结构算法内容就掌握了一半。算法和数据库结构的目的解决的就是</p>
+<ul>
+<li>快</li>
+<li>省</li>
+</ul>
+<p>的问题，但是当我们设计或者写出一个算法的时候如何来评估什么算法执行效率高或者使用资源更优秀呢？我们传统的做法可能是 监控、统计、计算执行时间，计算所用的内存资源大小，这种方法其实在有边界的范围内是没什么问题的，比如可以确定代码执行的机器的数据和种类，但是如果代码运行的平台和种类无法确定的话前面这些评估方法可能就没有意义了，我们知道同一段代码在不同CPU，环境，硬件下面执行的时间和效率是不一样的。如果才能在这种大环境下有一个平均并且可靠的评估手段呢，复杂度分析就是为这种情况而生的。</p>
+<h4 id="大O时间复杂度分析"><a href="#大O时间复杂度分析" class="headerlink" title="大O时间复杂度分析"></a>大O时间复杂度分析</h4><p>大O时间复杂度分析也叫渐进时间复杂度(asymptotic time complexity)，表示代码的执行时间随着数据规模增长而变化。</p>
+<p><strong>分析</strong></p>
+<p>从CPU角度来看，每一行的代码都执行着类似的操作，读数据-运算-写数据，可以假设没行代码的执行时间都是一样的，都为unit_time。</p>
+<p>2和3行代码都需要1个unit_time，4和5行都运行了N次所以需要2n <em> unit_time，这样的话这段代码的总执行时间就是(2n+2) </em> unit_time，看出来的所以代码的执行时间T(n)和每行代码的执行次数成n正比。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cal(int n) &#123;</span><br><span class="line">  int sum = 0;</span><br><span class="line">  int i = 1;</span><br><span class="line">  for (; i &lt;= n; ++i) &#123;</span><br><span class="line">    sum = sum + i;</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了这个规律可以总结成一个公式，大O表示法。</p>
+<h3 id="T（n）-O-f-n"><a href="#T（n）-O-f-n" class="headerlink" title="T（n）= O( f(n) )"></a>T（n）= O( f(n) )</h3><p>T(n)所代表的就是代码的执行时间，f(n)代表代码执行次数的总和，公式中的O表示T(n)和f(n)成正比。</p>
+<p><strong>如何分析</strong></p>
+<p>这里有三种方法可以参考</p>
+<ol>
+<li>只关心执行次数最多的一段代码</li>
+<li>加分法则总的复杂度等于量级最大的那段代码的复杂度</li>
+<li>乘法法则嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
+</ol>
+<p>我这里选第一种来分析下，刚刚说的只关心执行次数最多的一段代码那么，代码中的低阶、系数、常量都可以忽略只需要关系最大的一个量级。</p>
+<p>2、3行代码都是常量级别的执行时间，和n的大小无关，所以对于复杂度没有影响。这段代码执行次数最多的一段就是4、5它们的执行次数是和n的大小有关的，这二行代码执行了n次，挑出来我们只关心最大量级代码的执行次数，这段代码的时间复杂度是</p>
+<h4 id="O（n）"><a href="#O（n）" class="headerlink" title="O（n）"></a>O（n）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cal(int n) &#123;</span><br><span class="line">  int sum = 0;</span><br><span class="line">  int i = 1;</span><br><span class="line">  for (; i &lt;= n; ++i) &#123;</span><br><span class="line">    sum = sum + i;</span><br><span class="line">  &#125;</span><br><span class="line">  return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、3行代码因为是常量级我们也可以给他一个复杂度的分析就是</p>
+<h4 id="O（1）"><a href="#O（1）" class="headerlink" title="O（1）"></a>O（1）</h4><p>不管代码是一万行还是几十万行都和n无法，都可以算O(1)。</p>
+<h3 id="几种常见的复杂度分析"><a href="#几种常见的复杂度分析" class="headerlink" title="几种常见的复杂度分析"></a>几种常见的复杂度分析</h3><ul>
+<li>常量阶 O(n)</li>
+<li>对数阶 O(logn)</li>
+<li>线性阶 O(n)</li>
+<li>线性对数阶 O(nlogn)</li>
+<li>平方阶 O(n^^)</li>
+<li>立方阶 O(n^^^)</li>
+<li>指数阶 O(2(n次方))</li>
+<li>阶乘阶 O(n!)</li>
+</ul>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>空间复杂度顾名思义就是算法占用资源内存的分析，空间复杂度也叫渐进复杂度分析，表示算法的存储空间与数据规模之间的增长关系。它和时间复杂度是一样的概念，也是忽略那些常量阶的存储只关系最大的一个存储渐变增长。</p>
+<p>代码中i申请了存储空间但是它属于常量阶可以忽略掉，只要n在我们分析的范畴，所以这段代码我们只需要取n。空间复杂度为</p>
+<h4 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void print(int n) &#123;</span><br><span class="line">  int i = 0;</span><br><span class="line">  int[] a = new int[n];</span><br><span class="line">  for (i; i &lt;n; ++i) &#123;</span><br><span class="line">    a[i] = i * i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = n-1; i &gt;= 0; --i) &#123;</span><br><span class="line">    print out a[i]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常用的空间复杂度有O(1)、O（n）、O（n^），像是、O（logn）、O（nlogn）、这样的对数复杂度平时都不用到。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>复杂度关键还在于多练多分析，熟能生巧。复杂度它只是一个理论知识因为算法与算法之间没有一个标准来判定好与不好，但是我们通过大O表示法可以界定一个算法属于那种，这样当看到一段算法的时候我们就可以知道这段算法是属于哪个量级的复杂度了，一般来说越复杂的算法它所对应的复杂度也就越高。</p>
+<p><a href="https://time.geekbang.org/column/article/40036" target="_blank" rel="noopener">极客专栏</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/blog/2018/10/12/复杂度分析/" class="article-date">
+  <time datetime="2018-10-12T04:19:56.000Z" itemprop="datePublished">2018-10-12</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/blog/2018/09/20/Quick Sort/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Quick Sort</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="archives"><span class="fa fa-book"></span></a></li>
+          
+            <li><a href="https://github.com/jinweime"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a href="https://www.instagram.com/jinweicom/"><span class="fa fa-instagram"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
