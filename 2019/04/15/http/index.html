@@ -13,8 +13,9 @@
 <meta property="og:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-d2463d934b88d7e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g25fhmon6wj31580fqt8s.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-17T02:24:54.396Z">
+<meta property="og:updated_time" content="2019-04-17T02:56:18.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -163,9 +164,12 @@
 <li><p><strong>Transfer: chunked (分块传输编码 Chunked Transfer Encoding)</strong><br>这种情况一般用于服务器暂时无法返回全部的信息，但是也不能让客户端一直等着所以可以分段传输一些资源给客户端。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type：text/html</span><br><span class="line">Transfer-Encoding:chunked</span><br><span class="line"></span><br><span class="line">4</span><br><span class="line">chun</span><br><span class="line">9</span><br><span class="line">ked trans</span><br><span class="line">12</span><br><span class="line">fer encoding</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>Location</strong><br>指定重定向的⽬目标 URL</p>
+<li><p><strong>Location</strong><br>指定重定向的⽬目标 URL,比如访问一个<a href="http://xxx.com" target="_blank" rel="noopener">http://xxx.com</a> 如果这个网站支持的是<a href="https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。" target="_blank" rel="noopener">https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。</a></p>
 </li>
-<li><strong>User-Agent</strong><br>用户代理理，即是谁实际发送请求、接受响应的，例例如手机浏览器器、某款手机 App。这个参数的来源是为了支持早期的火狐浏览器，由于之前有很多浏览器没有统一兼容性导致很多网站，只能在某一部分的浏览器达到很好的效果。很多网站需要做很多浏览器的适配，后面网站支去做火狐浏览器的兼容，所以这个User-Agent就全部写成了Mozilla。</li>
+<li><strong>User-Agent</strong><br>用户代理理，即是谁实际发送请求、接受响应的，例例如手机浏览器器、某款手机 App。这个参数的来源是为了支持早期的火狐浏览器，由于之前有很多浏览器没有统一兼容性导致很多网站，只能在某一部分的浏览器达到很好的效果。很多网站需要做很多浏览器的适配，后面网站只去做火狐浏览器的兼容，所以这个User-Agent就全部写成了Mozilla，一直到现在一来都是大部分都是Mozilla这值。</li>
+</ul>
+<p>这个值还可以用于手机端的适配，我们访问同一个网站在手机端和浏览器可能访问的效果都是不一样的，手机上显示的页面可能会不一样，这种都可以通过这个代理类型来区别如何进行适配。</p>
+<ul>
 <li><strong>Range / Accept-Range</strong><br>指定Body的内容范围，一般用于分段取内容。</li>
 </ul>
 <ul>
@@ -185,12 +189,13 @@
 <li>古代密码棒<br><img src="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>古代最早的密码学就是这样的，为了防止信息的泄露这里有二个东西，不同规格的木棒(密钥），布带（密文）。通过这二个东西就是实现信息的加密了，只有在指定规格的木棒上面缠布带才能得到对应的信息。</li>
 </ul>
 <h3 id="替换式密码"><a href="#替换式密码" class="headerlink" title="替换式密码"></a>替换式密码</h3><p>最简单就体现就是在原始字符上面对每个字母进行+1，加完之后的字符就是密文了。</p>
-<blockquote>
-<p>原始字符：ABCDEFFEJ<br>密码字符：BCDEFGGFO</p>
-</blockquote>
-<h4 id="现代加密"><a href="#现代加密" class="headerlink" title="现代加密"></a>现代加密</h4><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始字符：ABCDEFFEJ  (对每个字符进行+1)</span><br><span class="line">加密后字符：BCDEFGGFO</span><br><span class="line">解密原始字符：ABCDEFFEJ  (对每个字符进行-1)</span><br></pre></td></tr></table></figure>
+<p>解密在通过在密文上对每个字符进行一次-1得到就是我们的原文</p>
+<h4 id="现代加密"><a href="#现代加密" class="headerlink" title="现代加密"></a>现代加密</h4><p>现代的加密方式由于有了计算机所以它支持复杂度更大，运算量更大的加密逻辑，但是它和核心原理其实也是和这种加密棒的原理很像。</p>
+<ul>
 <li>对称加密<br>比木棒更加复杂的加密算法，通信双方使用同一个密钥。</li>
 </ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1g25fhmon6wj31580fqt8s.jpg" alt=""></p>
 <ol>
 <li><p>DES<br>56位密钥，密钥太短被弃用了，因为有可能被穷举法破解就是我们说的暴力破解，就是一个一个的试。</p>
 </li>
@@ -199,8 +204,9 @@
 <li><p>缺点<br>密钥不能安全的在网络上传输，如果泄露加密的信息就会被破解。</p>
 </li>
 </ol>
+<p><strong>关于破解</strong><br>任何一种加密其实都没有被破解不了的一说，知识被破解的几率太小太小，比如我们如果通过穷举法去破解，它花上的时间可能要上千年这种时间点就不现实了。</p>
 <blockquote>
-<p>为什么需要非对称加密，如果你的密钥需要在网络上传输，如何把密钥要安全的给到，这个安全传输本身就是一个难题。非对称加密可以解决这个问题，因为它是把公钥公开出来的，密钥只能自己持有。传输公开的都是公钥这样就解决了公钥需要传输的加密场景。</p>
+<p>为什么需要非对称加密，如果你的密钥需要在网络上传输，如何把密钥要安全的给到，这个安全传输本身就是一个难题。非对称加密可以解决这个问题，因为它是把公钥公开出来的，密钥只能自己持有。传输公开的都是公钥这样就解决了公钥需要传输的加密场景，非对称加密更加复杂它的加密原理和进制数据的溢出有关。</p>
 </blockquote>
 <ul>
 <li>非对称加密</li>
