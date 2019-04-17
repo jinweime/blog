@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g25fhmon6wj31580fqt8s.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-17T02:56:18.256Z">
+<meta property="og:updated_time" content="2019-04-17T03:01:46.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -108,9 +108,8 @@
 <li>Body:要发送给服务器的内容，这个Body只有当时Post等类型请求情况下才会有body。</li>
 </ul>
 <h4 id="Method类型"><a href="#Method类型" class="headerlink" title="Method类型"></a>Method类型</h4><ul>
-<li><strong>GET</strong><br>幂等一次操作和多次操作的结果是一样的<br>取资源、对服务器数据不修改、不发送body<blockquote>
-<p>GET /users/1 HTTP/1.1<br>Host: api.github.com</p>
-</blockquote>
+<li><p><strong>GET</strong><br>幂等一次操作和多次操作的结果是一样的<br>取资源、对服务器数据不修改、不发送body</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>POST</strong><br>主要用于增加或者修改资源、发送给服务器的内容写在body里面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br><span class="line">name=jack&amp;gender=male</span><br></pre></td></tr></table></figure>
@@ -148,14 +147,19 @@
 <li>Content-Type/Content-Length<br><em>body的类型和长度这个在Http中还是比较重要，因为客户端和服务器在进行数据传输的时候经常要约定一些数据格式的类型，不同Content-Type对应的报文拼装方式也是不一样的</em></li>
 </ul>
 <ol>
-<li>text/html<br>请求 Web 页面是返回响应的类型，Body 中返回 html 文本</li>
+<li><strong>text/html</strong><br>请求 Web 页面返回响应的类型，Body 中返回 html 文本，这种type是最早的content-Type类型，早期互联网刚开始发展的时候就是通过html来传输渲染的。</li>
 </ol>
+<p>响应报文</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 853</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">..............................</span><br></pre></td></tr></table></figure>
 <ol>
-<li>x-www-form-urlencoded<br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>x-www-form-urlencoded</strong><br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。</li>
 </ol>
-<p>3.multitype/form-data<br>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>multitype/form-data</strong></li>
+</ol>
+<p>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure>
 <ol>
 <li>application/json , image/jpeg , application/zip …<br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Content-Length: 38</span><br><span class="line">&#123;&quot;name&quot;:&quot;jack&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span><br><span class="line">Location</span><br><span class="line">User-Agent</span><br><span class="line">Range/Accpet-Range</span><br></pre></td></tr></table></figure>
 </li>
