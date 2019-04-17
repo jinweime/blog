@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-d2463d934b88d7e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-16T09:17:57.304Z">
+<meta property="og:updated_time" content="2019-04-17T01:51:46.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -99,20 +99,19 @@
 <li>users/?gender=male 路径path</li>
 </ul>
 <hr>
+<p><strong>如图报文格式</strong></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1930388-d2463d934b88d7e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <ul>
 <li>请求行：Method（GET POST PUT DELETE…）、Path、HTTP version</li>
-<li>Headers:请求的meta data</li>
-<li>Body:要发送给服务器的内容</li>
+<li>Headers:请求的meta data，Meta Data就是元数据也就是数据中的数据。</li>
+<li>Body:要发送给服务器的内容，这个Body只有当时Post等类型请求情况下才会有body。</li>
 </ul>
 <h4 id="Method类型"><a href="#Method类型" class="headerlink" title="Method类型"></a>Method类型</h4><ul>
 <li><strong>GET</strong><br>幂等一次操作和多次操作的结果是一样的<br>取资源、对服务器数据不修改、不发送body<blockquote>
 <p>GET /users/1 HTTP/1.1<br>Host: api.github.com</p>
 </blockquote>
 </li>
-<li><strong>POST</strong><br>主要用于增加或者修改资源、发送给服务器的内容写在body里面<blockquote>
-<p>POST /users HTTP/1.1<br>Host: api.github.com<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 13</p>
-</blockquote>
+<li><strong>POST</strong><br>主要用于增加或者修改资源、发送给服务器的内容写在body里面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -183,9 +182,9 @@
 <li><strong>Range / Accept-Range</strong><br>指定Body的内容范围，一般用于分段取内容。</li>
 </ul>
 <ul>
-<li><p><strong>REST</strong><br>网络上众说纷纷，个人觉得就是一种架构风格，一种规范设计最早是从HTTP开的。</p>
+<li><p><strong>REST</strong><br>网络上众说纷纷，个人觉得就是一种架构风格，一种规范设计最早是从HTTP开始。</p>
 </li>
-<li><p>Server-Client architecture<br>C/S架构我给你发一个请求，你给我返回一个请求</p>
+<li><p>Server-Client architecture<br>C/S架构我给你发一个请求，你给我返回一个请求HTTP本身就是符合这种架构设计的。</p>
 </li>
 <li>StateLessness<br>无状态就是前后之前没有任何关联，比如要获取一个用户信息但是没有登录，服务器肯定会告知客户端请先登录，http本身就是符合这种设计的。</li>
 <li>Cacheability<br>可缓存，http本身就是可以缓存的不管是机器还是节点，整个架构都是符合这个规范，和软件本身是没什么关系的。</li>
@@ -222,7 +221,7 @@
 <li>RSA</li>
 </ol>
 </blockquote>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg" alt=""></p>
+<p>A通过B的公钥来加密原文，发送给B B得到密文之后使用自己的私钥进行一次解密，这样就可以得到原文。非对称加密中加密的密钥叫做公钥，解密密钥的叫做私钥，公钥是可以公开的谁需要发送信息给我都可以拿到此密钥进行加密发送，但是私钥是绝对不可以公开的只有是自己持有。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg" alt=""></p>
 
       
     </div>
