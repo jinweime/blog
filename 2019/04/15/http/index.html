@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g25fhmon6wj31580fqt8s.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-17T03:04:55.239Z">
+<meta property="og:updated_time" content="2019-04-17T03:23:26.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -135,41 +135,33 @@
 <li>5xx：服务器器错误。如 500（服务器器内部错误）</li>
 </ul>
 <ul>
-<li><strong>Headers</strong><br><em>http消息的元数据(matedata)数据的数据</em></li>
-<li>Host<br>目标主机，不是在网络上用于寻址的，而是在目标服务器器上用于定位子服务器的。</li>
+<li><strong>Headers</strong><br><em>http消息的元数据(matedata数据的数据)</em></li>
+<li>Host<br>目标主机，不是在网络上用于寻址的，而是在目标服务器上用于定位子服务器的。</li>
 </ul>
 <ol>
 <li>在报文拼装发送之前通过DNS寻址找到目标服务器</li>
-<li>在host拼装在报文里面找到目标服务器</li>
+<li>把host拼装在报文里面找到目标服务器</li>
 </ol>
 <p>这种方式主要是用来处理一个服务器可能会有多个虚拟服务器，如果通过host可以精确的定位需要访问的服务器。</p>
 <ul>
 <li>Content-Type/Content-Length<br><em>body的类型和长度这个在Http中还是比较重要，因为客户端和服务器在进行数据传输的时候经常要约定一些数据格式的类型，不同Content-Type对应的报文拼装方式也是不一样的</em></li>
 </ul>
-<ol>
-<li><strong>text/html</strong><br>请求 Web 页面返回响应的类型，Body 中返回 html 文本，这种type是最早的content-Type类型，早期互联网刚开始发展的时候就是通过html来传输渲染的。</li>
-</ol>
+<p><strong>text/html</strong><br>请求 Web 页面返回响应的类型，Body 中返回 html 文本，这种type是最早的content-Type类型，早期互联网刚开始发展的时候就是通过html来传输渲染的。</p>
 <p>响应报文</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 853</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">..............................</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>x-www-form-urlencoded</strong><br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>multitype/form-data</strong></li>
-</ol>
+<p><strong>x-www-form-urlencoded</strong><br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。</p>
+<p>请求报文格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure></p>
+<p><strong>multitype/form-data</strong></p>
 <p>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure>
-<ol>
-<li>application/json , image/jpeg , application/zip …<br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Content-Length: 38</span><br><span class="line">&#123;&quot;name&quot;:&quot;jack&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span><br><span class="line">Location</span><br><span class="line">User-Agent</span><br><span class="line">Range/Accpet-Range</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>请求报文格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure></p>
+<p><strong>application/json , image/jpeg , application/zip …</strong><br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。</p>
+<p>请求报文格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Content-Length: 38</span><br><span class="line">&#123;&quot;name&quot;:&quot;jack&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span><br><span class="line">Location</span><br><span class="line">User-Agent</span><br><span class="line">Range/Accpet-Range</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p><strong>Transfer: chunked (分块传输编码 Chunked Transfer Encoding)</strong><br>这种情况一般用于服务器暂时无法返回全部的信息，但是也不能让客户端一直等着所以可以分段传输一些资源给客户端。</p>
+<li><strong>Transfer: chunked (分块传输编码 Chunked Transfer Encoding)</strong><br>这种情况一般用于服务器暂时无法返回全部的信息，但是也不能让客户端一直等着所以可以分段传输一些资源给客户端。</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type：text/html</span><br><span class="line">Transfer-Encoding:chunked</span><br><span class="line"></span><br><span class="line">4</span><br><span class="line">chun</span><br><span class="line">9</span><br><span class="line">ked trans</span><br><span class="line">12</span><br><span class="line">fer encoding</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Location</strong><br>指定重定向的⽬目标 URL,比如访问一个<a href="http://xxx.com" target="_blank" rel="noopener">http://xxx.com</a> 如果这个网站支持的是<a href="https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。" target="_blank" rel="noopener">https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。</a></p>
-</li>
+<ul>
+<li><strong>Location</strong><br>指定重定向的⽬目标 URL,比如访问一个<a href="http://xxx.com" target="_blank" rel="noopener">http://xxx.com</a> 如果这个网站支持的是<a href="https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。" target="_blank" rel="noopener">https://xxx.com，那么这个location值就是带Https的这站点，浏览器自动就做了一个这样的定向转发。</a></li>
 <li><strong>User-Agent</strong><br>用户代理理，即是谁实际发送请求、接受响应的，例例如手机浏览器器、某款手机 App。这个参数的来源是为了支持早期的火狐浏览器，由于之前有很多浏览器没有统一兼容性导致很多网站，只能在某一部分的浏览器达到很好的效果。很多网站需要做很多浏览器的适配，后面网站只去做火狐浏览器的兼容，所以这个User-Agent就全部写成了Mozilla，一直到现在一来都是大部分都是Mozilla这值。</li>
 </ul>
 <p>这个值还可以用于手机端的适配，我们访问同一个网站在手机端和浏览器可能访问的效果都是不一样的，手机上显示的页面可能会不一样，这种都可以通过这个代理类型来区别如何进行适配。</p>
@@ -219,6 +211,9 @@
 <li>RSA</li>
 </ol>
 <p>A通过B的公钥来加密原文，发送给B B得到密文之后使用自己的私钥进行一次解密，这样就可以得到原文。非对称加密中加密的密钥叫做公钥，解密密钥的叫做私钥，公钥是可以公开的谁需要发送信息给我都可以拿到此密钥进行加密发送，但是私钥是绝对不可以公开的只有是自己持有。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg" alt=""></p>
+<blockquote>
+<p>待完…</p>
+</blockquote>
 
       
     </div>
