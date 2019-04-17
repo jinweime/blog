@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g25fhmon6wj31580fqt8s.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-17T06:31:46.232Z">
+<meta property="og:updated_time" content="2019-04-17T06:36:53.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -100,7 +100,7 @@
 <li>users/?gender=male 路径path</li>
 </ul>
 <hr>
-<p><strong>如图报文格式</strong></p>
+<p><strong>如图报文请求格式</strong></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1930388-d2463d934b88d7e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <ul>
 <li>请求行：Method（GET POST PUT DELETE…）、Path、HTTP version</li>
@@ -154,6 +154,7 @@
 <p><strong>multitype/form-data</strong></p>
 <p>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。</p>
 <p>请求报文格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure></p>
+<p>—-WebKitFormBoundary7MA4YWxkTrZu0gW就是一个数据的分界线，每个body都是以这个标识来分隔</p>
 <p><strong>application/json , image/jpeg , application/zip …</strong><br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。如果非要说缺点的话json可能在传输数据量上面会有点冗余，因为它有很多标点符号如果传输数据量大的话，这块会影响带宽的消耗。</p>
 <blockquote>
 <p>其实早期很多应用在传输文本数据类型的时候，但是习惯于用前面几种方式，像JSON这种传输方式是在移动应用出来以后才开始流行起来的，但是在HTTP请求和响应的数据格式定制上还是比较少用，比如提交表单可能都习惯于用multitype/form-data来进行，但是从使用的简易度上来说，JSON是一个比较好的选择，没有流行起来可能是因为大前端是岁数比较小，我们后端小哥不习惯吧。</p>
