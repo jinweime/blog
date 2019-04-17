@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-d2463d934b88d7e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1930388-9c865ebf8a2f64e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg">
-<meta property="og:updated_time" content="2019-04-17T01:51:46.408Z">
+<meta property="og:updated_time" content="2019-04-17T02:24:54.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="http到底是什么？ 定义它是一种网络传输协议，位于TCP/IP协议族的最顶层应用层。  HTTPHypertext Transfer Protocol（超文本传输协议）和 HTML (Hypertext Markup Language 超文本标记语言) 一起诞生，用于在网络上请求和传输 HTML 内容。 http工作模型 浏览器    用户在浏览器输入地址回车访问 浏览器拼装请求报文发送给服务器">
@@ -111,20 +111,22 @@
 <p>GET /users/1 HTTP/1.1<br>Host: api.github.com</p>
 </blockquote>
 </li>
-<li><strong>POST</strong><br>主要用于增加或者修改资源、发送给服务器的内容写在body里面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br></pre></td></tr></table></figure>
+<li><p><strong>POST</strong><br>主要用于增加或者修改资源、发送给服务器的内容写在body里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br><span class="line">name=jack&amp;gender=male</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>PUT</strong><br>主要用于修改资源、发送给服务器内容写在body里面</p>
 </li>
 </ul>
-<blockquote>
-<p>name=rengwuxian&amp;gender=male</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br><span class="line">gender=female</span><br></pre></td></tr></table></figure>
 <ul>
-<li><strong>PUT</strong><br>主要用于修改资源、发送给服务器内容写在body里面<br>PUT /users/1 HTTP/1.1<br>Host: api.github.com<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 13</li>
+<li><strong>DELETE</strong><br>幂等，一次和多次删除都是一样的。<br>主要用于删除资源、不发送 Body</li>
 </ul>
-<p>gender=female</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br></pre></td></tr></table></figure>
 <ul>
-<li><strong>DELETE</strong><br>幂等，一次和多次删除都是一样的。<br>主要用于删除资源、不发送 Body<br>DELETE /users/1 HTTP/1.1<br>Host: api.github.com</li>
-<li><strong>HEAD</strong><br>幂等<br>和 GET 使用方法完全相同唯一区别在于，返回的响应中没有 Body<br>可以用于做一些获取信息的操作比如断点续传，先head一下获取信息来判断是否需要做下一次请求；</li>
+<li><strong>HEAD</strong></li>
 </ul>
-</blockquote>
+<p>幂等</p>
+<p><em>和 GET 使用方法完全相同唯一区别在于，返回的响应中没有 Body<br>可以用于做一些获取信息的操作比如断点续传，先head一下获取信息来判断是否需要做下一次请求；</em></p>
 <h3 id="Status-Code"><a href="#Status-Code" class="headerlink" title="Status Code"></a>Status Code</h3><ul>
 <li>1xx：临时性消息。如：100 （继续发送）、101（正在切换协议）</li>
 <li>2xx：成功。最典型的是 200（OK）、201（创建成功）。</li>
@@ -133,11 +135,8 @@
 <li>5xx：服务器器错误。如 500（服务器器内部错误）</li>
 </ul>
 <ul>
-<li><strong>Headers</strong><blockquote>
-<p>http消息的元数据(matedata)数据的数据</p>
-</blockquote>
-</li>
-<li>Host<br>目标主机，不是在网络上用于寻址的，而是在目标服务器器上用于定位子服务器器的。</li>
+<li><strong>Headers</strong><br><em>http消息的元数据(matedata)数据的数据</em></li>
+<li>Host<br>目标主机，不是在网络上用于寻址的，而是在目标服务器器上用于定位子服务器的。</li>
 </ul>
 <ol>
 <li>在报文拼装发送之前通过DNS寻址找到目标服务器</li>
@@ -145,31 +144,19 @@
 </ol>
 <p>这种方式主要是用来处理一个服务器可能会有多个虚拟服务器，如果通过host可以精确的定位需要访问的服务器。</p>
 <ul>
-<li>Content-Type/Content-Length<blockquote>
-<p>body的类型和长度</p>
-</blockquote>
-</li>
+<li>Content-Type/Content-Length<br><em>body的类型和长度这个在Http中还是比较重要，因为客户端和服务器在进行数据传输的时候经常要约定一些数据格式的类型，不同Content-Type对应的报文拼装方式也是不一样的</em></li>
 </ul>
 <ol>
-<li><p>text/html<br>请求 Web 页面是返回响应的类型，Body 中返回 html 文本</p>
-<blockquote>
-<p>HTTP/1.1 200 OK<br>Content-Type: text/html; charset=utf-8<br>Content-Length: 853<br>&lt;!DOCTYPE html&gt;<br><html><br><head><br><meta charset="utf-8"><br>…………………………</head></html></p>
-</blockquote>
-</li>
-<li><p>x-www-form-urlencoded<br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。</p>
-<blockquote>
-<p>POST /users HTTP/1.1<br>Host: api.github.com<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 27<br>name=rengwuxian&amp;gender=male</p>
-</blockquote>
+<li>text/html<br>请求 Web 页面是返回响应的类型，Body 中返回 html 文本</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 853</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">..............................</span><br></pre></td></tr></table></figure>
+<ol>
+<li>x-www-form-urlencoded<br>Web 页面纯文本表单的提交方式,如果是存文本的话可以使用这种encoded。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>3.multitype/form-data<br>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。</p>
-<blockquote>
-<p>POST /users HTTP/1.1<br>Host: hencoder.com<br>Content-Type: multipart/form-data;boundary=<br>—-WebKitFormBoundary7MA4YWxkTrZu0gW<br>Content-Length: 2382<br>——WebKitFormBoundary7MA4YWxkTrZu0gW<br>Content-Disposition: form-data; name=”name”<br>jack<br>——WebKitFormBoundary7MA4YWxkTrZu0gW<br>Content-Disposition: form-data; name=”avatar”; filename=”avatar.jpg”<br>Content-Type: image/jpeg<br>JFIFHHvOwX9jximQrWa……</p>
-</blockquote>
+<p>3.multitype/form-data<br>Web 页面含有二进制文件时的提交方式，推荐使用带文件的表单也可以上传文本的表单但是会比较消耗带宽。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: multipart/form-data;boundary=</span><br><span class="line">----WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Length: 2382</span><br><span class="line">&gt;------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line">jack</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;avatar&quot;; filename=&quot;avatar.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line">JFIFHHvOwX9jximQrWa......</span><br></pre></td></tr></table></figure></p>
 <ol>
-<li>application/json , image/jpeg , application/zip …<br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。<blockquote>
-<p>POST /users HTTP/1.1<br>Host: hencoder.com<br>Content-Type: application/json; charset=utf-8<br>Content-Length: 38<br>{“name”:”jack”,”gender”:”male”}<br>Location<br>User-Agent<br>Range/Accpet-Range</p>
-</blockquote>
+<li>application/json , image/jpeg , application/zip …<br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求，优点就是格式灵活格式自由。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: hencoder.com</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Content-Length: 38</span><br><span class="line">&#123;&quot;name&quot;:&quot;jack&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span><br><span class="line">Location</span><br><span class="line">User-Agent</span><br><span class="line">Range/Accpet-Range</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <ul>
@@ -213,14 +200,14 @@
 </li>
 </ol>
 <blockquote>
-<p>为什么需要非对称加密，如果你的密钥需要在网络上传输，如何把密钥要安全的给到，这个安全传输本身就是一个难题。</p>
+<p>为什么需要非对称加密，如果你的密钥需要在网络上传输，如何把密钥要安全的给到，这个安全传输本身就是一个难题。非对称加密可以解决这个问题，因为它是把公钥公开出来的，密钥只能自己持有。传输公开的都是公钥这样就解决了公钥需要传输的加密场景。</p>
+</blockquote>
 <ul>
 <li>非对称加密</li>
 </ul>
 <ol>
 <li>RSA</li>
 </ol>
-</blockquote>
 <p>A通过B的公钥来加密原文，发送给B B得到密文之后使用自己的私钥进行一次解密，这样就可以得到原文。非对称加密中加密的密钥叫做公钥，解密密钥的叫做私钥，公钥是可以公开的谁需要发送信息给我都可以拿到此密钥进行加密发送，但是私钥是绝对不可以公开的只有是自己持有。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g24jjjdkw9j30og0b4dfu.jpg" alt=""></p>
 
       
